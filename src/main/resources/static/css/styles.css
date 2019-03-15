@@ -1,0 +1,12 @@
+@charset "UTF-8";
+
+body, wrapper {
+    min-height: 100vh;
+    font-family: sans-serif;
+    font-weight: normal;
+    font-size: 14px;
+}
+
+main {
+    flex: 1;
+}
