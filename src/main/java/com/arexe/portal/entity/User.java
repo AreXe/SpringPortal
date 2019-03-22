@@ -4,9 +4,10 @@ import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Set;
 
 @Entity
-@Table(name = "users")
+@Table(name = "user")
 @Data
 public class User {
 
@@ -34,6 +35,12 @@ public class User {
     @Column(name = "active")
     @NotNull
     private int active;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles;
+    @Transient
+    private int roleNumber;
 
     public User() {
     }
