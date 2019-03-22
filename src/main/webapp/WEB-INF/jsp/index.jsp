@@ -1,9 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
 <html lang="en">
 <!-- Head -->
+<head>
     <%@include file="/WEB-INF/incl/head.app" %>
+<title><s:message code="title.mainPage"/></title>
+</head>
 <body>
 <wrapper class="d-flex flex-column">
 <!-- Navigation -->
