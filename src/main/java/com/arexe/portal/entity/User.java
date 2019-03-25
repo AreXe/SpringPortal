@@ -4,15 +4,19 @@ import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.Set;
 
 @Entity
 @Table(name = "user")
 @Data
-public class User {
+public class User implements Serializable {
+
+    private static final long serialVersionUID = -6986527833296330728L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private Integer id;
 
     @Column(name = "login")
@@ -43,5 +47,9 @@ public class User {
     private int roleNumber;
 
     public User() {
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 }
