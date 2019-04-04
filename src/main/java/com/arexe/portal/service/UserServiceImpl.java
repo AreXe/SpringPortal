@@ -5,6 +5,7 @@ import com.arexe.portal.entity.User;
 import com.arexe.portal.repository.RoleRepository;
 import com.arexe.portal.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -19,10 +20,13 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
     @Autowired
     private RoleRepository roleRepository;
+    @Autowired
+    BCryptPasswordEncoder passwordEncoder;
 
     @Override
     public void saveUser(User user) {
         user.setActive(1);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         Role role = roleRepository.findByRole("ROLE_USER");
         user.setRoles(new HashSet<Role>(Arrays.asList(role)));
