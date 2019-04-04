@@ -17,7 +17,10 @@
     <!-- Page Content -->
     <main class="container-fluid py-3 flex-fill">
         <div class="container">
-            <h2>Register new account</h2>
+
+            <div class="card border-primary">
+                <h4 class="card-header">Register new account</h4>
+                <div class="card-body">
 
             <sf:form id="usersForm" action="adduser" modelAttribute="user" enctype="multipart/form-data" method="POST">
             <div class="form-group row">
@@ -42,6 +45,12 @@
                 </div>
             </div>
                 <div class="form-group row">
+                    <label for="password" class="col-sm-2 col-form-label"><s:message code="register.passwordConfirm"/></label>
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control" id="password2" required>
+                    </div>
+                </div>
+                <div class="form-group row">
                     <label for="firstName" class="col-sm-2 col-form-label"><s:message code="register.firstName"/></label>
                     <div class="col-sm-10">
                         <sf:input type="text" path="firstName" id="firstName" cssClass="form-control" required="required"/>
@@ -54,13 +63,20 @@
                     </div>
                 </div>
 
-                <button class="btn btn-primary btn-lg btn-block" type="submit"><s:message code="button.register"/></button>
+                <button class="btn btn-primary btn-lg btn-block mb-3" type="submit"><s:message code="button.register"/></button>
+
+                <div class="text-center">
+                    <button class="btn btn-outline-primary" type="button" onclick="window.location.href='${pageContext.request.contextPath}/'"><s:message code="button.return"/></button>
+                </div>
             </sf:form>
+                </div>
+            </div>
 
         </div>
     </main>
     <!-- Footer -->
     <%@include file="/WEB-INF/incl/footer.app" %>
+    <script src="/resources/scripts/passconfirm.js"></script>
 </wrapper>
 </body>
 </html>
