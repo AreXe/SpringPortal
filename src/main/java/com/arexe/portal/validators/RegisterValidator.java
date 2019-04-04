@@ -26,4 +26,16 @@ public class RegisterValidator implements Validator {
             errors.rejectValue("password", "error.userPasswordIsNotMatch");
         }
     }
+
+    public void validateLoginExist(User user, Errors errors) {
+        if (user != null) {
+            errors.rejectValue("login", "error.userLoginExist");
+        }
+    }
+
+    public void validateEmailExist(User user, Errors errors) {
+        if (user != null) {
+            errors.rejectValue("email", "error.userEmailExist");
+        }
+    }
 }

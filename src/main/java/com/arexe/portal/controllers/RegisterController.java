@@ -32,6 +32,10 @@ public class RegisterController {
 
         String returnPage = null;
 
+        User existingUser = userService.findUserByEmail(user.getEmail());
+
+        new RegisterValidator().validateEmailExist(existingUser, result);
+        new RegisterValidator().validateLoginExist(existingUser, result);
         new RegisterValidator().validate(user, result);
 
         if (result.hasErrors()) {
