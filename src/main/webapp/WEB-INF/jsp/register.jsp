@@ -29,12 +29,14 @@
             <div class="form-group row">
                 <label for="email" class="col-sm-2 col-form-label"><s:message code="register.email"/></label>
                 <div class="col-sm-10">
+                    <sf:errors path="email"/>
                     <sf:input type="email" path="email" id="email" cssClass="form-control" required="required"/>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="password" class="col-sm-2 col-form-label"><s:message code="register.password"/></label>
                 <div class="col-sm-10">
+                    <sf:errors path="password"/>
                     <sf:input type="password" path="password" id="password" cssClass="form-control" required="required"/>
                 </div>
             </div>
