@@ -1,4 +1,4 @@
-<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar sticky-top navbar-expand-md navbar-dark bg-dark">
     <div class="container">
         <a class="navbar-brand" href="index">Portal</a>
 
@@ -13,13 +13,21 @@
                     <span class="sr-only">(current)</span>
                     </a>
                 </li>
+                <sec:authorize access="hasRole('ANONYMOUS')">
                     <li class="nav-item">
-                    <a class="nav-link" href="#">Log in</a>
+                    <a class="nav-link" href="/login">Log in</a>
                 </li>
                 </li>
                     <li class="nav-item">
                     <a class="nav-link" href="/register">Register</a>
                 </li>
+                </sec:authorize>
+                <sec:authorize access="isAuthenticated()">
+                </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="/logout">Log out</a>
+                </li>
+                </sec:authorize>
             </ul>
         </div>
     </div>
