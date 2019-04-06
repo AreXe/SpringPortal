@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.validation.Valid;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 
@@ -32,10 +33,11 @@ public class RegisterController {
 
         String returnPage = null;
 
-        User existingUser = userService.findUserByEmail(user.getEmail());
+        User existingEmail = userService.findUserByEmail(user.getEmail());
+        User existingLogin = userService.findUserByLogin(user.getLogin());
 
-        new RegisterValidator().validateEmailExist(existingUser, result);
-        new RegisterValidator().validateLoginExist(existingUser, result);
+        new RegisterValidator().validateEmailExist(existingEmail, result);
+        new RegisterValidator().validateLoginExist(existingLogin, result);
         new RegisterValidator().validate(user, result);
 
         if (result.hasErrors()) {

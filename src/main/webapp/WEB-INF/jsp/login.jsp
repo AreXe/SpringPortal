@@ -22,17 +22,27 @@
             <h4 class="card-header">Log in</h4>
             <div class="card-body">
 
+                <c:if test="${not empty param.error}">
+                    <div class="alert alert-danger" role="alert">
+                        <s:message code="error.login"/>
+                    </div>
+                </c:if>
+
     <form class="form-signin" action="/login" method="POST">
         <div class="form-label-group mb-2">
-            <input type="text" name="email" id="inputLogin" class="form-control" placeholder="Email" required autofocus>
+            <input type="email" name="email" id="inputLogin" class="form-control" placeholder="Email" required autofocus>
         </div>
 
         <div class="form-label-group mb-2">
             <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
         </div>
 
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <button class="btn btn-lg btn-primary btn-block mb-2" type="submit">Sign in</button>
     </form>
+
+                <div class="alert alert-info text-center" role="alert">
+                    Don't have an account? Create it <a href="/register" class="alert-link">here</a>
+                </div>
 
             </div>
         </div>
