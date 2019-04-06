@@ -18,48 +18,52 @@
     <main class="container-fluid py-3 flex-fill">
         <div class="container">
 
+            <div class="col-md-8 offset-2">
             <div class="card border-primary">
-                <h4 class="card-header">Register new account</h4>
+                <h4 class="card-header">Create new account</h4>
                 <div class="card-body">
+                    <div class="text-center mb-2">
+                    Get started with your free account
+                    </div>
 
             <sf:form id="usersForm" action="adduser" modelAttribute="user" enctype="multipart/form-data" method="POST">
             <div class="form-group row">
-                <label for="login" class="col-sm-2 col-form-label"><s:message code="register.login"/></label>
-                <div class="col-sm-10">
+                <label for="login" class="col-sm-3 col-form-label"><s:message code="register.login"/></label>
+                <div class="col-sm-9">
                     <sf:errors path="login"/>
-                    <sf:input type="text" path="login" id="login" cssClass="form-control" required="required"/>
+                    <sf:input type="text" path="login" id="login" placeholder="Login" cssClass="form-control" required="required"/>
                 </div>
             </div>
             <div class="form-group row">
-                <label for="email" class="col-sm-2 col-form-label"><s:message code="register.email"/></label>
-                <div class="col-sm-10">
+                <label for="email" class="col-sm-3 col-form-label"><s:message code="register.email"/></label>
+                <div class="col-sm-9">
                     <sf:errors path="email"/>
-                    <sf:input type="email" path="email" id="email" cssClass="form-control" required="required"/>
+                    <sf:input type="email" path="email" id="email" placeholder="user@example.com" cssClass="form-control" required="required"/>
                 </div>
             </div>
             <div class="form-group row">
-                <label for="password" class="col-sm-2 col-form-label"><s:message code="register.password"/></label>
-                <div class="col-sm-10">
+                <label for="password" class="col-sm-3 col-form-label"><s:message code="register.password"/></label>
+                <div class="col-sm-9">
                     <sf:errors path="password"/>
-                    <sf:input type="password" path="password" id="password" cssClass="form-control" required="required"/>
+                    <sf:input type="password" path="password" id="password" placeholder="Password" cssClass="form-control" required="required"/>
                 </div>
             </div>
                 <div class="form-group row">
-                    <label for="password" class="col-sm-2 col-form-label"><s:message code="register.passwordConfirm"/></label>
-                    <div class="col-sm-10">
-                        <input type="password" class="form-control" id="password2" required>
+                    <label for="password" class="col-sm-3 col-form-label"><s:message code="register.passwordConfirm"/></label>
+                    <div class="col-sm-9">
+                        <input type="password" class="form-control" id="password2" placeholder="Password" required>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="firstName" class="col-sm-2 col-form-label"><s:message code="register.firstName"/></label>
-                    <div class="col-sm-10">
-                        <sf:input type="text" path="firstName" id="firstName" cssClass="form-control" required="required"/>
+                    <label for="firstName" class="col-sm-3 col-form-label"><s:message code="register.firstName"/></label>
+                    <div class="col-sm-9">
+                        <sf:input type="text" path="firstName" id="firstName" placeholder="First name" cssClass="form-control" required="required"/>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="lastName" class="col-sm-2 col-form-label"><s:message code="register.lastName"/></label>
-                    <div class="col-sm-10">
-                        <sf:input type="text" path="lastName" id="lastName" cssClass="form-control" required="required"/>
+                    <label for="lastName" class="col-sm-3 col-form-label"><s:message code="register.lastName"/></label>
+                    <div class="col-sm-9">
+                        <sf:input type="text" path="lastName" id="lastName" placeholder="Last name" cssClass="form-control" required="required"/>
                     </div>
                 </div>
 
@@ -70,6 +74,7 @@
                 </div>
             </sf:form>
                 </div>
+            </div>
             </div>
 
         </div>
