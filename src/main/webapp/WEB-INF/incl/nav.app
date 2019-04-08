@@ -25,6 +25,10 @@
                 <sec:authorize access="isAuthenticated()">
                 </li>
                     <li class="nav-item">
+                 <a class="nav-link" href="/profile">Profile</a>
+                </li>
+                </li>
+                    <li class="nav-item">
                     <a class="nav-link" href="/logout">Log out</a>
                 </li>
                 </sec:authorize>
