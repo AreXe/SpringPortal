@@ -56,6 +56,10 @@
                     </tbody>
                 </table>
 
+                <div class="text-center mb-2">
+                    <button class="btn btn-outline-primary mr-3" type="button" onclick="window.location.href='${pageContext.request.contextPath}/editprofile'">Edit profile</button>
+                </div>
+
                 <div class="text-center">
                     <button class="btn btn-outline-primary mr-3" type="button" onclick="window.location.href='${pageContext.request.contextPath}/changepassword'">Change password</button>
                 </div>

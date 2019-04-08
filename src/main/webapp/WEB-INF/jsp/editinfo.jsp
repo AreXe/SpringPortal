@@ -7,7 +7,11 @@
 <!-- Head -->
 <head>
     <%@include file="/WEB-INF/incl/head.app" %>
-<title><s:message code="title.error"/></title>
+<title><s:message code="title.info"/></title>
+    <script type="text/javascript">
+        function leave() {window.location = '${pageContext.request.contextPath}/logout';}
+        setTimeout("leave()", 3000);
+    </script>
 </head>
 <body>
 <wrapper class="d-flex flex-column">
@@ -18,10 +22,10 @@
 <div class="container">
 
     <div class="col-md-4 offset-4 text-center">
-        <div class="card text-white bg-danger border-dark mb-3">
-            <h3 class="card-header">Error</h3>
+        <div class="card text-white bg-info border-dark mb-3">
+            <h3 class="card-header">Information</h3>
             <div class="card-body">
-                <h5 class="card-title">Page not found!</h5>
+                <h5 class="card-title"><c:out value="${message}"/></h5>
             </div>
         </div>
     </div>

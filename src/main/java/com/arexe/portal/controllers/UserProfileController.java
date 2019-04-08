@@ -4,6 +4,7 @@ import com.arexe.portal.entity.User;
 import com.arexe.portal.service.UserService;
 import com.arexe.portal.utils.UserUtils;
 import com.arexe.portal.validators.ChangePasswordValidator;
+import com.arexe.portal.validators.RegisterValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
@@ -60,6 +61,39 @@ public class UserProfileController {
             redirectPage = "changepassword";
             model.addAttribute("message", messageSource.getMessage("changePassword.success", null, locale));
         }
+        return redirectPage;
+    }
+
+    @GET
+    @RequestMapping(value = "/editprofile")
+    public String editUserProfile(Model model) {
+        String loggedUser = UserUtils.getLoggedUser();
+        User user = userService.findUserByEmail(loggedUser);
+        model.addAttribute("user", user);
+        return "editprofile";
+    }
+
+    @POST
+    @RequestMapping(value = "/updateprofile")
+    public String updateUserProfile(User user, BindingResult result, Model model, Locale locale) {
+        String redirectPage = null;
+
+        String loggedUser = UserUtils.getLoggedUser();
+        User actualUser = userService.findUserByEmail(loggedUser);
+
+        User existingLogin = userService.findUserByLogin(user.getLogin());
+        if(!actualUser.getLogin().equals(user.getLogin())) {
+            new RegisterValidator().validateLoginExist(existingLogin, result);
+        }
+
+        if (result.hasErrors()) {
+            redirectPage = "editprofile";
+        } else {
+            userService.updateUserProfile(user.getLogin(), user.getFirstName(), user.getLastName(), user.getEmail());
+            redirectPage = "editinfo";
+            model.addAttribute("message", messageSource.getMessage("editProfile.success", null, locale));
+        }
+
         return redirectPage;
     }
 }
