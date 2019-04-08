@@ -7,7 +7,7 @@
 <!-- Head -->
 <head>
     <%@include file="/WEB-INF/incl/head.app" %>
-<title><s:message code="title.mainPage"/></title>
+<title><s:message code="title.error"/></title>
 </head>
 <body>
 <wrapper class="d-flex flex-column">
@@ -16,7 +16,16 @@
 <!-- Page Content -->
 <main class="container-fluid py-3 flex-fill">
 <div class="container">
-    <h1>Portal Main Page</h1>
+
+    <div class="col-md-4 offset-4 text-center">
+        <div class="card text-white bg-danger border-dark mb-3">
+            <h3 class="card-header">Error</h3>
+            <div class="card-body">
+                <h5 class="card-title">Page not found!</h5>
+            </div>
+        </div>
+    </div>
+
 </div>
 </main>
 <!-- Footer -->

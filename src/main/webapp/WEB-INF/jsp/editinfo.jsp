@@ -7,7 +7,11 @@
 <!-- Head -->
 <head>
     <%@include file="/WEB-INF/incl/head.app" %>
-<title><s:message code="title.mainPage"/></title>
+<title><s:message code="title.info"/></title>
+    <script type="text/javascript">
+        function leave() {window.location = '${pageContext.request.contextPath}/logout';}
+        setTimeout("leave()", 3000);
+    </script>
 </head>
 <body>
 <wrapper class="d-flex flex-column">
@@ -16,7 +20,16 @@
 <!-- Page Content -->
 <main class="container-fluid py-3 flex-fill">
 <div class="container">
-    <h1>Portal Main Page</h1>
+
+    <div class="col-md-4 offset-4 text-center">
+        <div class="card text-white bg-info border-dark mb-3">
+            <h3 class="card-header">Information</h3>
+            <div class="card-body">
+                <h5 class="card-title"><c:out value="${message}"/></h5>
+            </div>
+        </div>
+    </div>
+
 </div>
 </main>
 <!-- Footer -->
