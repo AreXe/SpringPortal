@@ -7,5 +7,6 @@ public interface UserService {
     void saveUser(User user);
     User findUserByEmail(String email);
     User findUserByLogin(String login);
+    void updateUserPassword(String newPassword, String email);
 
 }

@@ -46,6 +46,9 @@ public class User implements Serializable {
     @Transient
     private int roleNumber;
 
+    @Transient
+    private String newPassword;
+
     public User() {
     }
 
