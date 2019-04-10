@@ -22,6 +22,12 @@
                     <a class="nav-link" href="/register">Register</a>
                 </li>
                 </sec:authorize>
+                <sec:authorize access="hasRole('ROLE_ADMIN')">
+                </li>
+                    <li class="nav-item">
+                 <a class="nav-link text-danger" href="/admin">Admin</a>
+                </li>
+                </sec:authorize>
                 <sec:authorize access="isAuthenticated()">
                 </li>
                     <li class="nav-item">
