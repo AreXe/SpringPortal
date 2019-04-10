@@ -3,7 +3,7 @@
 
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link active" href="#"><span data-feather="home"></span>Dashboard <span class="sr-only">(current)</span></a>
+            <a class="nav-link active" href="/admin"><span data-feather="home"></span>Dashboard <span class="sr-only">(current)</span></a>
           </li>
 		</ul>
 
@@ -14,7 +14,7 @@
         </h6>
 		<ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link" href="#"><span data-feather="users"></span>User list</a>
+            <a class="nav-link" href="/admin/users"><span data-feather="users"></span>User list</a>
           </li>
 		</ul>
 
