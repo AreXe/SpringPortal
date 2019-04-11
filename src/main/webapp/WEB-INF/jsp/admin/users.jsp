@@ -38,6 +38,7 @@
                     <th scope="col">First name</th>
                     <th scope="col">Last name</th>
                     <th scope="col">Active?</th>
+                    <th scope="col">Choose</th>
                 </tr>
                 </thead>
 
@@ -69,6 +70,7 @@
                             </c:otherwise>
                         </c:choose>
                      </td>
+                    <td><button type="button" class="btn btn-outline-info"><a href="users/edit/${user.id}">Edit</a></button></td>
                 </tr>
                 </c:forEach>
                 </tbody>

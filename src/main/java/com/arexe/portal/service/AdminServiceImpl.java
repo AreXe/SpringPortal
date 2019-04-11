@@ -20,4 +20,22 @@ public class AdminServiceImpl implements AdminService {
         List<User> userList = adminRepository.findAll();
         return userList;
     }
+
+    @Override
+    public User getUserById(int id) {
+        User userById = adminRepository.findUserById(id);
+        return userById;
+    }
+
+    @Override
+    public void updateUserStatus(int id, int roleNumber, int active) {
+        adminRepository.updateUserActivation(id, active);
+        adminRepository.updateUserRole(id, roleNumber);
+    }
+
+    @Override
+    public void deleteUserById(int id) {
+        adminRepository.deleteUserByIdFromUserRoleTable(id);
+        adminRepository.deleteUserByIdFromUserTable(id);
+    }
 }
