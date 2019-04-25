@@ -22,6 +22,12 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
+    public List<User> findUsersByName(String name) {
+        List<User> userList = adminRepository.findUsersByName(name);
+        return userList;
+    }
+
+    @Override
     public User getUserById(int id) {
         User userById = adminRepository.findUserById(id);
         return userById;

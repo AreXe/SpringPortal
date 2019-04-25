@@ -7,10 +7,15 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository("adminRepository")
 public interface AdminRepository extends JpaRepository<User, Integer> {
 
     User findUserById(int id);
+
+    @Query(value = "SELECT * FROM user u WHERE u.email LIKE %:name% OR u.login LIKE %:name%", nativeQuery = true)
+    List<User> findUsersByName(@Param("name") String name);
 
     @Modifying
     @Query("UPDATE User u SET u.active=:active WHERE u.id=:id")

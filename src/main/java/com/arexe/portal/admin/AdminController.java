@@ -43,6 +43,15 @@ public class AdminController {
     }
 
     @GET
+    @RequestMapping(value = "/admin/users/search/{name}")
+    @Secured(value = {"ROLE_ADMIN"})
+    public String searchUsers(Model model, @PathVariable("name") String name) {
+        List<User> userList = findUsersByName(name);
+        model.addAttribute("userList", userList);
+        return "admin/users";
+    }
+
+    @GET
     @RequestMapping(value = "/admin/users/edit/{id}")
     @Secured(value = {"ROLE_ADMIN"})
     public String userEditPanel(Model model, @PathVariable("id") int id) {
@@ -75,6 +84,15 @@ public class AdminController {
 
     private List<User> getUserList() {
         List<User> userList = adminService.getUserList();
+        for (User user : userList) {
+            int roleNumber = user.getRoles().iterator().next().getId();
+            user.setRoleNumber(roleNumber);
+        }
+        return userList;
+    }
+
+    private List<User> findUsersByName(String name) {
+        List<User> userList = adminService.findUsersByName(name);
         for (User user : userList) {
             int roleNumber = user.getRoles().iterator().next().getId();
             user.setRoleNumber(roleNumber);
