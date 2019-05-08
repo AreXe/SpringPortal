@@ -13,14 +13,14 @@
 	<groupId>com.arexe</groupId>
 	<artifactId>portal</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 	<name>portal</name>
 	<description>Webapp made in Spring and Hibernate</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<java.version>10</java.version>
+		<java.version>1.8</java.version>
 	</properties>
 
 	<dependencies>
