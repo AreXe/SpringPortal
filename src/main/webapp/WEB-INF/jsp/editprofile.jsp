@@ -18,7 +18,7 @@
 <main class="container-fluid py-3 flex-fill">
 <div class="container">
 
-    <div class="col-md-6 offset-3">
+    <div class="col-md-6 offset-md-3">
         <div class="card border-primary">
             <h4 class="card-header">Edit profile</h4>
             <div class="card-body">

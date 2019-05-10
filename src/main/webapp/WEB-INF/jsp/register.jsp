@@ -18,7 +18,7 @@
     <main class="container-fluid py-3 flex-fill">
         <div class="container">
 
-            <div class="col-md-8 offset-2">
+            <div class="col-md-8 offset-md-2">
             <div class="card border-primary">
                 <h4 class="card-header">Create new account</h4>
                 <div class="card-body">
