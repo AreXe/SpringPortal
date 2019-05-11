@@ -8,3 +8,4 @@
 <!-- Styles - Bootstrap core, custom styling, fonts -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link rel="stylesheet" href="/resources/css/styles.css" type="text/css">
+<script type="text/javascript" src="/resources/scripts/navactive.js"></script>

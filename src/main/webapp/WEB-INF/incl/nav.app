@@ -8,33 +8,32 @@
 
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="/index">Start
+                <li class="nav-item">
+                    <a class="nav-link active" id="nav-home" href="/index">Start
                     <span class="sr-only">(current)</span>
                     </a>
                 </li>
+
                 <sec:authorize access="hasRole('ANONYMOUS')">
-                    <li class="nav-item">
-                    <a class="nav-link" href="/login">Log in</a>
+                <li class="nav-item">
+                    <a class="nav-link" id="nav-login" href="/login">Log in</a>
                 </li>
-                </li>
-                    <li class="nav-item">
-                    <a class="nav-link" href="/register">Register</a>
+                <li class="nav-item">
+                    <a class="nav-link" id="nav-register" href="/register">Register</a>
                 </li>
                 </sec:authorize>
+
                 <sec:authorize access="hasRole('ROLE_ADMIN')">
-                </li>
-                    <li class="nav-item">
-                 <a class="nav-link text-danger" href="/admin">Admin</a>
+                <li class="nav-item">
+                    <a class="nav-link text-danger" id="nav-admin" href="/admin">Admin</a>
                 </li>
                 </sec:authorize>
+
                 <sec:authorize access="isAuthenticated()">
+                <li class="nav-item">
+                    <a class="nav-link" id="nav-profile" href="/profile">Profile</a>
                 </li>
-                    <li class="nav-item">
-                 <a class="nav-link" href="/profile">Profile</a>
-                </li>
-                </li>
-                    <li class="nav-item">
+                <li class="nav-item">
                     <a class="nav-link" href="/logout">Log out</a>
                 </li>
                 </sec:authorize>
