@@ -37,7 +37,7 @@
 
         <div class="form-label-group">
             <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
-            <label for="inputPassword">Password</label>
+            <label for="inputPassword">Password</label><span toggle="#inputPassword" class="login-field-icon far fa-eye-slash input-password"></span>
         </div>
 
         <button class="btn btn-primary btn-block mb-2" type="submit">SIGN IN</button>

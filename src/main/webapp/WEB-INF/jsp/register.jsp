@@ -47,12 +47,14 @@
                     <sf:errors path="password"/>
                     <p class="card-text"><small class="text-muted"><s:message code="register.passwordRequirements"/></small></p>
                     <sf:input type="password" path="password" id="password" placeholder="Password" cssClass="form-control" required="required"/>
+                    <span toggle="#password" class="field-icon far fa-eye-slash input-password"></span>
                 </div>
             </div>
                 <div class="form-group row">
                     <label for="password" class="col-sm-3 col-form-label"><s:message code="register.passwordConfirm"/></label>
                     <div class="col-sm-9">
                         <input type="password" class="form-control" id="password2" placeholder="Password" required>
+                        <span toggle="#password2" class="field-icon far fa-eye-slash input-password"></span>
                     </div>
                 </div>
                 <div class="form-group row">
