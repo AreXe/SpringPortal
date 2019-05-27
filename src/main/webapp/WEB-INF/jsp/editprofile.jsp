@@ -18,7 +18,7 @@
 <main class="container-fluid py-3 flex-fill">
 <div class="container">
 
-    <div class="col-md-6 offset-3">
+    <div class="col-md-6 offset-md-3">
         <div class="card border-primary">
             <h4 class="card-header">Edit profile</h4>
             <div class="card-body">
@@ -33,15 +33,15 @@
                     <div class="form-group px-3">
                         <label for="login"><s:message code="register.login"/></label>
                         <sf:errors path="login"/>
-                        <sf:input type="text" path="login" id="login" placeholder="Login" value="${user.login}" cssClass="form-control" required="required"/>
+                        <sf:input type="text" path="login" id="login" placeholder="Login" value="${user.login}" cssClass="form-control" pattern=".{3,30}" maxlength="30" title="3 to 30 characters" data-toggle="tooltip" data-placement="top" required="required"/>
                     </div>
                     <div class="form-group px-3">
                         <label for="firstName"><s:message code="register.firstName"/></label>
-                        <sf:input type="text" path="firstName" id="firstName" placeholder="First name" value="${user.firstName}" cssClass="form-control" required="required"/>
+                        <sf:input type="text" path="firstName" id="firstName" placeholder="First name" value="${user.firstName}" cssClass="form-control" pattern=".{1,50}" maxlength="50" title="1 to 50 characters" data-toggle="tooltip" data-placement="top" required="required"/>
                     </div>
                     <div class="form-group px-3">
                         <label for="lastName"><s:message code="register.lastName"/></label>
-                        <sf:input type="text" path="lastName" id="firstName" placeholder="Last name" value="${user.lastName}" cssClass="form-control" required="required"/>
+                        <sf:input type="text" path="lastName" id="firstName" placeholder="Last name" value="${user.lastName}" cssClass="form-control" pattern=".{1,50}" maxlength="50" title="1 to 50 characters" data-toggle="tooltip" data-placement="top" required="required"/>
                     </div>
                     <div class="form-group px-3 text-center">
                         <button type="submit" class="btn btn-primary">Edit profile</button>
