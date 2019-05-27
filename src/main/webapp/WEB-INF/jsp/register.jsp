@@ -31,7 +31,7 @@
                 <label for="login" class="col-sm-3 col-form-label"><s:message code="register.login"/></label>
                 <div class="col-sm-9">
                     <sf:errors path="login"/>
-                    <sf:input type="text" path="login" id="login" placeholder="Login" cssClass="form-control" required="required"/>
+                    <sf:input type="text" path="login" id="login" placeholder="Login" cssClass="form-control" pattern=".{3,30}" maxlength="30" title="3 to 30 characters" data-toggle="tooltip" data-placement="top" required="required"/>
                 </div>
             </div>
             <div class="form-group row">
@@ -60,13 +60,13 @@
                 <div class="form-group row">
                     <label for="firstName" class="col-sm-3 col-form-label"><s:message code="register.firstName"/></label>
                     <div class="col-sm-9">
-                        <sf:input type="text" path="firstName" id="firstName" placeholder="First name" cssClass="form-control" required="required"/>
+                        <sf:input type="text" path="firstName" id="firstName" placeholder="First name" cssClass="form-control" pattern=".{1,50}" maxlength="50" title="1 to 50 characters" data-toggle="tooltip" data-placement="top" required="required"/>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="lastName" class="col-sm-3 col-form-label"><s:message code="register.lastName"/></label>
                     <div class="col-sm-9">
-                        <sf:input type="text" path="lastName" id="lastName" placeholder="Last name" cssClass="form-control" required="required"/>
+                        <sf:input type="text" path="lastName" id="lastName" placeholder="Last name" cssClass="form-control" pattern=".{1,50}" maxlength="50" title="1 to 50 characters" data-toggle="tooltip" data-placement="top" required="required"/>
                     </div>
                 </div>
 
