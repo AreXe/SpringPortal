@@ -18,7 +18,7 @@
 <main class="container-fluid py-3 flex-fill">
 <div class="container">
 
-    <div class="col-md-6 offset-3">
+    <div class="col-md-6 offset-md-3">
         <div class="card border-primary">
             <h4 class="card-header">Change password</h4>
             <div class="card-body">
@@ -35,10 +35,12 @@
                         <p class="card-text"><small class="text-muted"><s:message code="register.passwordRequirements"/></small></p>
                         <sf:errors path="newPassword"/>
                         <sf:password path="newPassword" id="password" placeholder="Password" cssClass="form-control" required="required"/>
+                        <span toggle="#password" class="field-icon far fa-eye-slash input-password"></span>
                     </div>
                     <div class="form-group px-3">
                         <label for="password2">Confirm new password</label>
                         <input type="password" class="form-control" id="password2" placeholder="Password" required>
+                        <span toggle="#password2" class="field-icon far fa-eye-slash input-password"></span>
                     </div>
                     <div class="form-group px-3 text-center">
                         <button type="submit" class="btn btn-primary">Change password</button>

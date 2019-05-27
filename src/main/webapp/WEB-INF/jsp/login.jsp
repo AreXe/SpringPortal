@@ -7,6 +7,7 @@
 <!-- Head -->
 <head>
     <%@include file="/WEB-INF/incl/head.app" %>
+    <link rel="stylesheet" href="/resources/css/login.css" type="text/css">
 <title><s:message code="title.login"/></title>
 </head>
 <body>
@@ -17,10 +18,10 @@
 <main class="container-fluid py-3 flex-fill">
 <div class="container">
 
-    <div class="col-md-6 offset-3">
-        <div class="card border-primary">
-            <h4 class="card-header">Log in</h4>
+    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card card-signin my-3">
             <div class="card-body">
+                <h5 class="card-title text-center">Sign in</h5>
 
                 <c:if test="${not empty param.error}">
                     <div class="alert alert-danger" role="alert">
@@ -29,15 +30,17 @@
                 </c:if>
 
     <form class="form-signin" action="/login" method="POST">
-        <div class="form-label-group mb-2">
+        <div class="form-label-group">
             <input type="email" name="email" id="inputLogin" class="form-control" placeholder="Email" required autofocus>
+            <label for="inputLogin">Email</label>
         </div>
 
-        <div class="form-label-group mb-2">
+        <div class="form-label-group">
             <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+            <label for="inputPassword">Password</label><span toggle="#inputPassword" class="login-field-icon far fa-eye-slash input-password"></span>
         </div>
 
-        <button class="btn btn-lg btn-primary btn-block mb-2" type="submit">Sign in</button>
+        <button class="btn btn-primary btn-block mb-2" type="submit">SIGN IN</button>
     </form>
 
                 <div class="alert alert-info text-center" role="alert">

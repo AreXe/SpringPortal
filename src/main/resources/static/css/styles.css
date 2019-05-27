@@ -18,6 +18,23 @@ main {
     vertical-align: text-bottom;
 }
 
+/*Fontawesome field icons*/
+.field-icon {
+    float: right;
+    margin-right: 20px;
+    margin-top: -26px;
+    position: relative;
+    z-index: 2;
+}
+
+.login-field-icon {
+    float: right;
+    margin-right: 25px;
+    margin-top: -32px;
+    position: relative;
+    z-index: 2;
+}
+
 /*Left sidebar style*/
 .sidebar {
     position: fixed;

@@ -21,7 +21,7 @@
 <main class="container-fluid py-3 flex-fill">
 <div class="container">
 
-    <div class="col-md-4 offset-4 text-center">
+    <div class="col-md-4 offset-md-4 text-center">
         <div class="card text-white bg-info border-dark mb-3">
             <h3 class="card-header">Information</h3>
             <div class="card-body">
