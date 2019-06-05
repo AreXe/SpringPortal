@@ -48,8 +48,9 @@
                         <td>${borrow.book.author}</td>
                         <td>${borrow.book.releaseDate}</td>
                         <td>
-                            <sf:form id="borrowForm" action="returnbook" modelAttribute="borrow" enctype="multipart/form-data" method="POST">
-                                <button class="btn btn-success" type="submit">Return</button>
+                            <sf:form id="borrowForm" action="returnbook" modelAttribute="borrow" enctype="multipart/form-data" method="PUT">
+                                <input type="hidden" name="id" value="${borrow.id}"/>
+                                <button class="btn btn-warning" type="submit">Return</button>
                             </sf:form>
                         </td>
                     </tr>
