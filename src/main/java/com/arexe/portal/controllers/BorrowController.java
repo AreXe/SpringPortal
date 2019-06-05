@@ -13,8 +13,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import java.time.LocalDate;
+import java.util.List;
 
 @Controller
 public class BorrowController {
@@ -30,10 +32,8 @@ public class BorrowController {
     @RequestMapping(value = "addnewborrow")
     public String addBorrow(Model model, Book book) {
         Borrow borrow = new Borrow();
-        String loggedUser = UserUtils.getLoggedUser();
-        User user = userService.findUserByEmail(loggedUser);
 
-        borrow.setUser(user);
+        borrow.setUser(getLoggedUser());
         borrow.setBook(book);
         borrow.setStartDate(LocalDate.now());
 
@@ -41,5 +41,18 @@ public class BorrowController {
 
         borrowService.saveBorrow(borrow);
         return "redirect:books";
+    }
+
+    @GET
+    @RequestMapping(value = "borrows")
+    public String getBorrowList(Model model, Borrow borrow) {
+        List<Borrow> borrowList = borrowService.getBorrowsByUser(getLoggedUser());
+        model.addAttribute("borrowList", borrowList);
+        return "borrows";
+    }
+
+    private User getLoggedUser() {
+        String loggedUser = UserUtils.getLoggedUser();
+        return userService.findUserByEmail(loggedUser);
     }
 }

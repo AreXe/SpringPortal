@@ -14,7 +14,10 @@
         </h6>
 		<ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link" href="/books"><span data-feather="users"></span>Book list</a>
+            <a class="nav-link" href="/books"><span data-feather="book"></span>Book list</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/borrows"><span data-feather="list"></span>Borrow list</a>
           </li>
 		</ul>
 
