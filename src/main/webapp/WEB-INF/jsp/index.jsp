@@ -17,8 +17,14 @@
     <div class="jumbotron">
         <div class="container text-white">
             <h1 class="display-3">Hello to our library!</h1>
-            <p>In our library you can make account and reserve the book, please log in first</p>
+            <sec:authorize access="hasRole('ANONYMOUS')">
+            <p>Please log in first in order to use our library service and option to borrow books.</p>
             <p><a class="btn btn-primary btn-lg" href="/login" role="button">Log in &raquo;</a></p>
+            </sec:authorize>
+            <sec:authorize access="isAuthenticated()">
+            <p>Check Library panel in order to borrow or return books.</p>
+            <p><a class="btn btn-primary btn-lg" href="/books" role="button">Library &raquo;</a></p>
+            </sec:authorize>
         </div>
     </div>
 

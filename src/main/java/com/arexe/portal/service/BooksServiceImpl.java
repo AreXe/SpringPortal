@@ -1,6 +1,7 @@
 package com.arexe.portal.service;
 
 import com.arexe.portal.entity.Book;
+import com.arexe.portal.entity.BookStatus;
 import com.arexe.portal.repository.BooksRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +14,7 @@ import java.util.List;
 public class BooksServiceImpl implements BooksService {
 
     @Autowired
-    BooksRepository booksRepository;
+    private BooksRepository booksRepository;
 
     @Override
     public List<Book> getBookList() {
@@ -44,6 +45,11 @@ public class BooksServiceImpl implements BooksService {
         updateBook.setReleaseDate(book.getReleaseDate());
         updateBook.setDescription(book.getDescription());
         booksRepository.save(updateBook);
+    }
+
+    @Override
+    public void updateBookStatus(int id, String bookStatus) {
+        booksRepository.updateBookStatus(id, bookStatus);
     }
 
     @Override
