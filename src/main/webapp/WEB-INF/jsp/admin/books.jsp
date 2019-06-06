@@ -52,7 +52,7 @@
                     <td>${book.author}</td>
                     <td>${book.releaseDate}</td>
                     <td>${book.status}</td>
-                    <td><a type="button" class="btn btn-outline-info" href="books/edit/${book.id}">Edit</a></td>
+                    <td><a type="button" class="btn btn-outline-info" href="${pageContext.request.contextPath}/admin/books/edit/${book.id}">Edit</a></td>
                 </tr>
                 </c:forEach>
                 </tbody>
