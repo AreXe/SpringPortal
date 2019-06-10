@@ -10,26 +10,26 @@ import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
 import java.util.Locale;
 
 @Controller
 public class UserProfileController {
 
-    @Autowired
-    private UserService userService;
-    @Autowired
-    private MessageSource messageSource;
+    private final UserService userService;
+    private final MessageSource messageSource;
 
-    @GET
-    @RequestMapping(value = "/profile")
+    @Autowired
+    public UserProfileController(UserService userService, MessageSource messageSource) {
+        this.userService = userService;
+        this.messageSource = messageSource;
+    }
+
+    @GetMapping(value = "/profile")
     public String showUserProfile(Model model) {
-
-        String loggedUser = UserUtils.getLoggedUser();
-        User user = userService.findUserByEmail(loggedUser);
+        User user = getLoggedUser();
 
         int roleNumber = user.getRoles().iterator().next().getId();
         user.setRoleNumber(roleNumber);
@@ -39,19 +39,16 @@ public class UserProfileController {
         return "profile";
     }
 
-    @GET
-    @RequestMapping(value = "/changepassword")
+    @GetMapping(value = "/changepassword")
     public String changeUserPassword(Model model) {
-        String loggedUser = UserUtils.getLoggedUser();
-        User user = userService.findUserByEmail(loggedUser);
+        User user = getLoggedUser();
         model.addAttribute("user", user);
         return "changepassword";
     }
 
-    @POST
-    @RequestMapping(value = "/updatepassword")
+    @PostMapping(value = "/updatepassword")
     public String updateUserPassword(User user, BindingResult result, Model model, Locale locale) {
-        String redirectPage = null;
+        String redirectPage;
 
         new ChangePasswordValidator().checkPassword(user.getNewPassword(), result);
         if (result.hasErrors()) {
@@ -64,25 +61,19 @@ public class UserProfileController {
         return redirectPage;
     }
 
-    @GET
-    @RequestMapping(value = "/editprofile")
+    @GetMapping(value = "/editprofile")
     public String editUserProfile(Model model) {
-        String loggedUser = UserUtils.getLoggedUser();
-        User user = userService.findUserByEmail(loggedUser);
+        User user = getLoggedUser();
         model.addAttribute("user", user);
         return "editprofile";
     }
 
-    @POST
-    @RequestMapping(value = "/updateprofile")
+    @PostMapping(value = "/updateprofile")
     public String updateUserProfile(User user, BindingResult result, Model model, Locale locale) {
-        String redirectPage = null;
-
-        String loggedUser = UserUtils.getLoggedUser();
-        User actualUser = userService.findUserByEmail(loggedUser);
-
+        String redirectPage;
+        User actualUser = getLoggedUser();
         User existingLogin = userService.findUserByLogin(user.getLogin());
-        if(!actualUser.getLogin().equals(user.getLogin())) {
+        if (!actualUser.getLogin().equals(user.getLogin())) {
             new RegisterValidator().validateLoginExist(existingLogin, result);
         }
 
@@ -95,5 +86,10 @@ public class UserProfileController {
         }
 
         return redirectPage;
+    }
+
+    private User getLoggedUser(){
+        String loggedUser = UserUtils.getLoggedUser();
+        return userService.findUserByEmail(loggedUser);
     }
 }

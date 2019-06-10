@@ -50,6 +50,7 @@ public class User implements Serializable {
     private String newPassword;
 
     public User() {
+        //for JPA
     }
 
     public void setRoles(Set<Role> roles) {
