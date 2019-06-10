@@ -12,8 +12,12 @@ import java.util.List;
 @Transactional
 public class AdminServiceImpl implements AdminService {
 
+    private final AdminRepository adminRepository;
+
     @Autowired
-    private AdminRepository adminRepository;
+    AdminServiceImpl(AdminRepository adminRepository) {
+        this.adminRepository = adminRepository;
+    }
 
     @Override
     public List<User> getUserList() {

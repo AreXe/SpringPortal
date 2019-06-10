@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository("adminRepository")
+@Repository
 public interface AdminRepository extends JpaRepository<User, Integer> {
 
     User findUserById(int id);
