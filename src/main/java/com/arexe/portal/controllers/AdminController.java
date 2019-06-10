@@ -19,10 +19,14 @@ import java.util.Map;
 @Controller
 public class AdminController {
 
+    private final AdminService adminService;
+    private final MessageSource messageSource;
+
     @Autowired
-    private AdminService adminService;
-    @Autowired
-    private MessageSource messageSource;
+    public AdminController(AdminService adminService, MessageSource messageSource) {
+        this.adminService = adminService;
+        this.messageSource = messageSource;
+    }
 
     @GetMapping(value = "/admin")
     @Secured(value = {"ROLE_ADMIN"})

@@ -18,16 +18,18 @@ import java.util.Locale;
 @Controller
 public class UserProfileController {
 
+    private final UserService userService;
+    private final MessageSource messageSource;
+
     @Autowired
-    private UserService userService;
-    @Autowired
-    private MessageSource messageSource;
+    public UserProfileController(UserService userService, MessageSource messageSource) {
+        this.userService = userService;
+        this.messageSource = messageSource;
+    }
 
     @GetMapping(value = "/profile")
     public String showUserProfile(Model model) {
-
-        String loggedUser = UserUtils.getLoggedUser();
-        User user = userService.findUserByEmail(loggedUser);
+        User user = getLoggedUser();
 
         int roleNumber = user.getRoles().iterator().next().getId();
         user.setRoleNumber(roleNumber);
@@ -39,15 +41,14 @@ public class UserProfileController {
 
     @GetMapping(value = "/changepassword")
     public String changeUserPassword(Model model) {
-        String loggedUser = UserUtils.getLoggedUser();
-        User user = userService.findUserByEmail(loggedUser);
+        User user = getLoggedUser();
         model.addAttribute("user", user);
         return "changepassword";
     }
 
     @PostMapping(value = "/updatepassword")
     public String updateUserPassword(User user, BindingResult result, Model model, Locale locale) {
-        String redirectPage = null;
+        String redirectPage;
 
         new ChangePasswordValidator().checkPassword(user.getNewPassword(), result);
         if (result.hasErrors()) {
@@ -62,19 +63,15 @@ public class UserProfileController {
 
     @GetMapping(value = "/editprofile")
     public String editUserProfile(Model model) {
-        String loggedUser = UserUtils.getLoggedUser();
-        User user = userService.findUserByEmail(loggedUser);
+        User user = getLoggedUser();
         model.addAttribute("user", user);
         return "editprofile";
     }
 
     @PostMapping(value = "/updateprofile")
     public String updateUserProfile(User user, BindingResult result, Model model, Locale locale) {
-        String redirectPage = null;
-
-        String loggedUser = UserUtils.getLoggedUser();
-        User actualUser = userService.findUserByEmail(loggedUser);
-
+        String redirectPage;
+        User actualUser = getLoggedUser();
         User existingLogin = userService.findUserByLogin(user.getLogin());
         if (!actualUser.getLogin().equals(user.getLogin())) {
             new RegisterValidator().validateLoginExist(existingLogin, result);
@@ -89,5 +86,10 @@ public class UserProfileController {
         }
 
         return redirectPage;
+    }
+
+    private User getLoggedUser(){
+        String loggedUser = UserUtils.getLoggedUser();
+        return userService.findUserByEmail(loggedUser);
     }
 }
