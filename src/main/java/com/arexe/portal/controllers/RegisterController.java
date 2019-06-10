@@ -7,11 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import javax.validation.Valid;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class RegisterController {
@@ -19,17 +16,15 @@ public class RegisterController {
     @Autowired
     private UserService userService;
 
-    @GET
-    @RequestMapping(value = "/register")
-    public String registerForm(Model model){
+    @GetMapping(value = "/register")
+    public String registerForm(Model model) {
         User user = new User();
         model.addAttribute("user", user);
         return "register";
     }
 
-    @POST
-    @RequestMapping(value = "/adduser")
-    public String registerPost(Model model, User user, BindingResult result){
+    @PostMapping(value = "/adduser")
+    public String registerPost(Model model, User user, BindingResult result) {
 
         String returnPage = null;
 
@@ -49,5 +44,4 @@ public class RegisterController {
 
         return returnPage;
     }
-
 }

@@ -1,4 +1,4 @@
-package com.arexe.portal.admin;
+package com.arexe.portal.controllers;
 
 import com.arexe.portal.entity.User;
 import com.arexe.portal.service.AdminService;
@@ -7,15 +7,13 @@ import org.springframework.context.MessageSource;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 @Controller
@@ -26,15 +24,13 @@ public class AdminController {
     @Autowired
     private MessageSource messageSource;
 
-    @GET
-    @RequestMapping(value = "/admin")
+    @GetMapping(value = "/admin")
     @Secured(value = {"ROLE_ADMIN"})
     public String adminMainPage() {
         return "admin/admin";
     }
 
-    @GET
-    @RequestMapping(value = "/admin/users")
+    @GetMapping(value = "/admin/users")
     @Secured(value = {"ROLE_ADMIN"})
     public String userPanel(Model model) {
         List<User> userList = getUserList();
@@ -42,8 +38,7 @@ public class AdminController {
         return "admin/users";
     }
 
-    @GET
-    @RequestMapping(value = "/admin/users/search/{name}")
+    @GetMapping(value = "/admin/users/search/{name}")
     @Secured(value = {"ROLE_ADMIN"})
     public String searchUsers(Model model, @PathVariable("name") String name) {
         List<User> userList = findUsersByName(name);
@@ -51,8 +46,7 @@ public class AdminController {
         return "admin/users";
     }
 
-    @GET
-    @RequestMapping(value = "/admin/users/edit/{id}")
+    @GetMapping(value = "/admin/users/edit/{id}")
     @Secured(value = {"ROLE_ADMIN"})
     public String userEditPanel(Model model, @PathVariable("id") int id) {
         User userById = getUserById(id);
@@ -66,18 +60,16 @@ public class AdminController {
         return "admin/edituser";
     }
 
-    @POST
-    @RequestMapping(value = "/admin/updateuser/{id}")
+    @PostMapping(value = "/admin/updateuser/{id}")
     @Secured(value = {"ROLE_ADMIN"})
     public String updateUserFromPanel(User user, @PathVariable("id") int id) {
         adminService.updateUserStatus(id, user.getRoleNumber(), user.getActive());
         return "redirect:/admin/users";
     }
 
-    @DELETE
-    @RequestMapping(value = "/admin/deleteuser/{id}")
+    @DeleteMapping(value = "/admin/deleteuser/{id}")
     @Secured(value = {"ROLE_ADMIN"})
-    public String deleteUserAction(User user,@PathVariable("id") int id) {
+    public String deleteUserAction(@PathVariable("id") int id) {
         adminService.deleteUserById(id);
         return "redirect:/admin/users";
     }
@@ -102,19 +94,19 @@ public class AdminController {
 
     private User getUserById(int id) {
         User userById = adminService.getUserById(id);
-            int roleNumber = userById.getRoles().iterator().next().getId();
-            userById.setRoleNumber(roleNumber);
+        int roleNumber = userById.getRoles().iterator().next().getId();
+        userById.setRoleNumber(roleNumber);
         return userById;
     }
 
-    public Map<Integer, String> activityMap() {
+    private Map<Integer, String> activityMap() {
         Map<Integer, String> activityMap = new HashMap<>();
         activityMap.put(0, "Disabled");
         activityMap.put(1, "Active");
         return activityMap;
     }
 
-    public Map<Integer, String> roleMap() {
+    private Map<Integer, String> roleMap() {
         Map<Integer, String> roleMap = new HashMap<>();
         roleMap.put(1, "Admin");
         roleMap.put(2, "User");
