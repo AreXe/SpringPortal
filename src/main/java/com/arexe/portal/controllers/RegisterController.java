@@ -5,6 +5,7 @@ import com.arexe.portal.service.UserService;
 import com.arexe.portal.validators.RegisterValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,14 +14,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.Locale;
+
 @Controller
 public class RegisterController {
 
     private final UserService userService;
+    private final MessageSource messageSource;
 
     @Autowired
-    public RegisterController(UserService userService) {
+    public RegisterController(UserService userService, MessageSource messageSource) {
         this.userService = userService;
+        this.messageSource = messageSource;
     }
 
     //Convert input strings - removes leading and trailing whitespaces
@@ -38,9 +43,9 @@ public class RegisterController {
     }
 
     @PostMapping(value = "/adduser")
-    public String registerPost(Model model, User user, BindingResult result) {
+    public String registerPost(Model model, User user, BindingResult result, Locale locale) {
 
-        String returnPage = null;
+        String returnPage;
 
         User existingEmail = userService.findUserByEmail(user.getEmail());
         User existingLogin = userService.findUserByLogin(user.getLogin());
@@ -53,7 +58,8 @@ public class RegisterController {
             returnPage = "register";
         } else {
             userService.saveUser(user);
-            returnPage = "index";
+            model.addAttribute("message", messageSource.getMessage("register.success", null, locale));
+            returnPage = "login";
         }
 
         return returnPage;

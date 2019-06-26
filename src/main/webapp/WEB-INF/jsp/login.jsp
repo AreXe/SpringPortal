@@ -24,8 +24,13 @@
                 <h5 class="card-title text-center">Sign in</h5>
 
                 <c:if test="${not empty param.error}">
-                    <div class="alert alert-danger" role="alert">
+                    <div class="alert alert-danger text-center" role="alert">
                         <s:message code="error.login"/>
+                    </div>
+                </c:if>
+                <c:if test="${not empty message}">
+                    <div class="alert alert-success text-center" role="alert">
+                        <c:out value="${message}" />
                     </div>
                 </c:if>
 
