@@ -4,10 +4,13 @@ import com.arexe.portal.entity.User;
 import com.arexe.portal.service.UserService;
 import com.arexe.portal.validators.RegisterValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
@@ -18,6 +21,13 @@ public class RegisterController {
     @Autowired
     public RegisterController(UserService userService) {
         this.userService = userService;
+    }
+
+    //Convert input strings - removes leading and trailing whitespaces
+    @InitBinder
+    public void initBinder(WebDataBinder dataBinder) {
+        StringTrimmerEditor stringTrimmer = new StringTrimmerEditor(true);
+        dataBinder.registerCustomEditor(String.class, stringTrimmer);
     }
 
     @GetMapping(value = "/register")
