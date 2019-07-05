@@ -26,7 +26,7 @@
     </div>
 
     <div class="card border-primary my-3">
-        <h4 class="card-header">User: ${user.login}</h4>
+        <h4 class="card-header">User: ${user.login} (${user.id})</h4>
         <div class="card-body" align="center">
 
             <sf:form id="usersForm" action="${pageContext.request.contextPath}/admin/updateuser/${user.id}" modelAttribute="user" enctype="multipart/form-data" method="POST">
