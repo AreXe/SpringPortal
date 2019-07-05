@@ -30,8 +30,14 @@
                 </sec:authorize>
 
                 <sec:authorize access="isAuthenticated()">
-                <li class="nav-item">
-                    <a class="nav-link" id="nav-profile" href="/profile">Profile</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="nav-profile" href="#" id="profileDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Profile</a>
+                    <div class="dropdown-menu" aria-labelledby="profileDropdown">
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/profile">Your profile</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/editprofile">Edit profile</a>
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/changepassword">Change password</a>
+                    </div>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/logout">Log out</a>
