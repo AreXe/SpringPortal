@@ -30,21 +30,21 @@
             <div class="form-group row">
                 <label for="login" class="col-sm-3 col-form-label"><s:message code="register.login"/></label>
                 <div class="col-sm-9">
-                    <sf:errors path="login"/>
+                    <sf:errors path="login" cssClass="text-danger"/>
                     <sf:input type="text" path="login" id="login" placeholder="Login" cssClass="form-control" pattern=".{3,30}" maxlength="30" title="3 to 30 characters" data-toggle="tooltip" data-placement="top" required="required"/>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="email" class="col-sm-3 col-form-label"><s:message code="register.email"/></label>
                 <div class="col-sm-9">
-                    <sf:errors path="email"/>
+                    <sf:errors path="email" cssClass="text-danger"/>
                     <sf:input type="email" path="email" id="email" placeholder="user@example.com" cssClass="form-control" required="required"/>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="password" class="col-sm-3 col-form-label"><s:message code="register.password"/></label>
                 <div class="col-sm-9">
-                    <sf:errors path="password"/>
+                    <sf:errors path="password" cssClass="text-danger"/>
                     <p class="card-text"><small class="text-muted"><s:message code="register.passwordRequirements"/></small></p>
                     <sf:input type="password" path="password" id="password" placeholder="Password" cssClass="form-control" required="required"/>
                     <span toggle="#password" class="field-icon far fa-eye-slash input-password"></span>
@@ -60,17 +60,19 @@
                 <div class="form-group row">
                     <label for="firstName" class="col-sm-3 col-form-label"><s:message code="register.firstName"/></label>
                     <div class="col-sm-9">
+                        <sf:errors path="firstName" cssClass="text-danger"/>
                         <sf:input type="text" path="firstName" id="firstName" placeholder="First name" cssClass="form-control" pattern=".{1,50}" maxlength="50" title="1 to 50 characters" data-toggle="tooltip" data-placement="top" required="required"/>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="lastName" class="col-sm-3 col-form-label"><s:message code="register.lastName"/></label>
                     <div class="col-sm-9">
+                        <sf:errors path="lastName" cssClass="text-danger"/>
                         <sf:input type="text" path="lastName" id="lastName" placeholder="Last name" cssClass="form-control" pattern=".{1,50}" maxlength="50" title="1 to 50 characters" data-toggle="tooltip" data-placement="top" required="required"/>
                     </div>
                 </div>
 
-                <button class="btn btn-primary btn-lg btn-block mb-3" type="submit"><s:message code="button.register"/></button>
+                <button class="btn btn-primary btn-lg btn-block mb-3" id="submit" type="submit" disabled="disabled"><s:message code="button.register"/></button>
 
                 <div class="text-center">
                     <button class="btn btn-outline-primary" type="button" onclick="window.location.href='${pageContext.request.contextPath}/'"><s:message code="button.return"/></button>
@@ -85,6 +87,7 @@
     <!-- Footer -->
     <%@include file="/WEB-INF/incl/footer.app" %>
     <script src="/resources/scripts/passconfirm.js"></script>
+    <script src="/resources/scripts/buttonenabler.js"></script>
 </wrapper>
 </body>
 </html>

@@ -65,14 +65,14 @@
                     <td>
                         <c:choose>
                             <c:when test="${user.active == 1 }">
-                                <span data-feather="check-circle"></span>
+                                <span data-feather="check-circle" title="Active" data-toggle="tooltip" data-placement="top"></span>
                             </c:when>
                             <c:otherwise>
-                                <span data-feather="x-circle"></span>
+                                <span data-feather="x-circle" title="Disabled" data-toggle="tooltip" data-placement="top"></span>
                             </c:otherwise>
                         </c:choose>
                      </td>
-                    <td><a type="button" class="btn btn-outline-info" href="${pageContext.request.contextPath}/admin/users/edit/${user.id}">Edit</a></td>
+                    <td><a type="button" class="btn btn-sm btn-outline-info" href="${pageContext.request.contextPath}/admin/users/edit/${user.id}">Edit</a></td>
                 </tr>
                 </c:forEach>
                 </tbody>

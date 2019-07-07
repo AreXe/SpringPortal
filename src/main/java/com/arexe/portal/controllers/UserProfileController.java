@@ -6,11 +6,14 @@ import com.arexe.portal.utils.UserUtils;
 import com.arexe.portal.validators.ChangePasswordValidator;
 import com.arexe.portal.validators.RegisterValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.Locale;
@@ -25,6 +28,13 @@ public class UserProfileController {
     public UserProfileController(UserService userService, MessageSource messageSource) {
         this.userService = userService;
         this.messageSource = messageSource;
+    }
+
+    //Convert input strings - removes leading and trailing whitespaces
+    @InitBinder
+    public void initBinder(WebDataBinder dataBinder) {
+        StringTrimmerEditor stringTrimmer = new StringTrimmerEditor(true);
+        dataBinder.registerCustomEditor(String.class, stringTrimmer);
     }
 
     @GetMapping(value = "/profile")

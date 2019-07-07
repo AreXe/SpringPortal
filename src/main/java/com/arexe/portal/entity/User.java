@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Set;
 
@@ -21,19 +22,25 @@ public class User implements Serializable {
 
     @Column(name = "login")
     @NotNull
+    @Size(min = 3, max = 30, message = "3 to 30 characters")
     private String login;
+
     @Column(name = "email")
     @NotNull
     private String email;
+
     @Column(name = "password")
     @NotNull
     private String password;
 
     @Column(name = "first_name")
     @NotNull
+    @Size(min = 1, max = 50, message = "1 to 50 characters")
     private String firstName;
+
     @Column(name = "last_name")
     @NotNull
+    @Size(min = 1, max = 50, message = "1 to 50 characters")
     private String lastName;
 
     @Column(name = "active")
@@ -43,6 +50,7 @@ public class User implements Serializable {
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
+
     @Transient
     private int roleNumber;
 

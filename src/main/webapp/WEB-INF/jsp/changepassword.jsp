@@ -46,6 +46,9 @@
                         <button type="submit" class="btn btn-primary">Change password</button>
                     </div>
                 </sf:form>
+                <div class="text-center my-2">
+                    <button class="btn btn-outline-primary" type="button" onclick="history.back();"><s:message code="button.return"/></button>
+                </div>
             </div>
         </div>
     </div>
