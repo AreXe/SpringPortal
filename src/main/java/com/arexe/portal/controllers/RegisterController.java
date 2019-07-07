@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.validation.Valid;
 import java.util.Locale;
 
 @Controller
@@ -43,7 +44,7 @@ public class RegisterController {
     }
 
     @PostMapping(value = "/adduser")
-    public String registerPost(Model model, User user, BindingResult result, Locale locale) {
+    public String registerPost(Model model, @Valid User user, BindingResult result, Locale locale) {
 
         String returnPage;
 
