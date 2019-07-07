@@ -72,7 +72,7 @@
                     </div>
                 </div>
 
-                <button class="btn btn-primary btn-lg btn-block mb-3" type="submit"><s:message code="button.register"/></button>
+                <button class="btn btn-primary btn-lg btn-block mb-3" id="submit" type="submit" disabled="disabled"><s:message code="button.register"/></button>
 
                 <div class="text-center">
                     <button class="btn btn-outline-primary" type="button" onclick="window.location.href='${pageContext.request.contextPath}/'"><s:message code="button.return"/></button>
@@ -87,6 +87,7 @@
     <!-- Footer -->
     <%@include file="/WEB-INF/incl/footer.app" %>
     <script src="/resources/scripts/passconfirm.js"></script>
+    <script src="/resources/scripts/buttonenabler.js"></script>
 </wrapper>
 </body>
 </html>
