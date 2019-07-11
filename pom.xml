@@ -11,16 +11,16 @@
 	</parent>
 
 	<groupId>com.arexe</groupId>
-	<artifactId>portal</artifactId>
+	<artifactId>bgames</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
-	<name>portal</name>
-	<description>Webapp made in Spring and Hibernate</description>
+	<name>bgames</name>
+	<description>Board games application made using Spring</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<java.version>10</java.version>
+		<java.version>1.8</java.version>
 		<junit-jupiter.version>5.4.2</junit-jupiter.version>
 		<junit-platform.version>1.4.2</junit-platform.version>
 	</properties>
