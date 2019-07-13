@@ -25,6 +25,9 @@
           <li class="nav-item">
             <a class="nav-link" href="/admin/boardgames"><span data-feather="list"></span>Board games list</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/addboardgame"><span data-feather="plus-circle"></span>Add board game</a>
+          </li>
 		</ul>
 
 		</div>

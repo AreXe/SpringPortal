@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -35,5 +36,18 @@ public class BoardGamesController {
         List<BoardGame> boardGamesList = boardGameService.findBoardGamesByTitle(title);
         model.addAttribute("bgList", boardGamesList);
         return "admin/boardgames";
+    }
+
+    @GetMapping(value = "/admin/addboardgame")
+    @Secured(value = {"ROLE_ADMIN"})
+    public String showBoardGameForm(){
+        return "admin/addboardgame";
+    }
+
+    @PostMapping(value = "/admin/addnewboardgame")
+    @Secured(value = {"ROLE_ADMIN"})
+    public String addBoardGame(Model model, BoardGame boardGame){
+        boardGameService.saveBoardGame(boardGame);
+        return "admin/addboardgame";
     }
 }
