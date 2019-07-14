@@ -87,6 +87,13 @@
                 </div>
             </sf:form>
 
+            <sf:form id="deleteBoardGameForm" action="${pageContext.request.contextPath}/admin/deleteboardgame/${boardGame.id}" modelAttribute="boardGame" enctype="multipart/form-data" method="DELETE">
+                <sf:hidden path="id" value="${boardGame.id}"/>
+                <div class="text-center my-2">
+                    <button class="btn btn-danger" type="submit" onclick="return confirm('Delete this board game?')">Delete</button>
+                </div>
+            </sf:form>
+
                 <div class="text-center my-2">
                     <button class="btn btn-outline-primary" type="button" onclick="history.back();"><s:message code="button.return"/></button>
                 </div>

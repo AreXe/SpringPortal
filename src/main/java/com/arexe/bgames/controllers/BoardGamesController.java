@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -64,6 +61,13 @@ public class BoardGamesController {
     @Secured(value = {"ROLE_ADMIN"})
     public String updateBoardGameFromEditForm(BoardGame boardGame, @PathVariable("id") int id) {
         boardGameService.updateBoardGame(id, boardGame);
+        return "redirect:/admin/boardgames";
+    }
+
+    @DeleteMapping(value = "/admin/deleteboardgame/{id}")
+    @Secured(value = {"ROLE_ADMIN"})
+    public String deleteBoardGame(@PathVariable("id") int id){
+        boardGameService.deleteBoardGameById(id);
         return "redirect:/admin/boardgames";
     }
 }
