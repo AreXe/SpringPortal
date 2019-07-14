@@ -41,6 +41,12 @@ public class BoardGameServiceImpl implements BoardGameService {
     }
 
     @Override
+    public void updateBoardGame(int id, BoardGame boardGame) {
+        boardGame.setId(id);
+        saveBoardGame(boardGame);
+    }
+
+    @Override
     public void deleteBoardGameById(int id) {
         boardGameRepository.deleteById(id);
     }

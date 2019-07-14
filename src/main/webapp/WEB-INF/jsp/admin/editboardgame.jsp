@@ -26,58 +26,59 @@
     </div>
 
     <div class="card border-primary my-3">
-        <h4 class="card-header">Add new board game</h4>
+        <h4 class="card-header">Edit board game: ${boardGame.title} (${boardGame.releaseYear})</h4>
         <div class="card-body" align="center">
 
-            <sf:form id="boardGameForm" action="${pageContext.request.contextPath}/admin/addnewboardgame" modelAttribute="boardGame" enctype="multipart/form-data" method="POST">
+            <sf:form id="boardGameForm" action="${pageContext.request.contextPath}/admin/updateboardgame/${boardGame.id}" modelAttribute="boardGame" enctype="multipart/form-data" method="PUT">
+                <sf:hidden path="id" value="${boardGame.id}"/>
                 <div class="form-group row">
                     <label for="title" class="col-sm-2 col-form-label">Title</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" maxlength="255" name="title" id="title" placeholder="Title" required>
+                        <input type="text" class="form-control" maxlength="255" name="title" value="${boardGame.title}" id="title" placeholder="Title" required>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="designer" class="col-sm-2 col-form-label">Designer</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" maxlength="255" name="designer" id="designer" placeholder="Designer" required>
+                        <input type="text" class="form-control" maxlength="255" name="designer" value="${boardGame.designer}" id="designer" placeholder="Designer" required>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="releaseYear" class="col-sm-2 col-form-label">Release year</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" pattern="[0-9]{1,4}" maxlength="4" name="releaseYear" id="releaseYear" placeholder="Release year" required>
+                        <input type="text" class="form-control" pattern="[0-9]{1,4}" maxlength="4" name="releaseYear" value="${boardGame.releaseYear}" id="releaseYear" placeholder="Release year" required>
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label for="players" class="col-sm-2 col-form-label">Players</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="players" id="players" placeholder="Players">
+                        <input type="text" class="form-control" name="players" value="${boardGame.players}" id="players" placeholder="Players">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="playingTime" class="col-sm-2 col-form-label">Playing time</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="playingTime" id="playingTime" placeholder="Playing time">
+                        <input type="text" class="form-control" name="playingTime" value="${boardGame.playingTime}" id="playingTime" placeholder="Playing time">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="minAge" class="col-sm-2 col-form-label">Min age</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" pattern="[0-9]{1,2}" maxlength="2" name="minAge" id="minAge" placeholder="Min age">
+                        <input type="text" class="form-control" pattern="[0-9]{1,2}" maxlength="2" name="minAge" value="${boardGame.minAge}" id="minAge" placeholder="Min age">
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label for="description" class="col-sm-2 col-form-label">Description</label>
                     <div class="col-sm-10">
-                        <textarea rows="4" class="form-control" name="description" id="description" placeholder="Description..."></textarea>
+                        <textarea rows="4" class="form-control" name="description" id="description" placeholder="Description...">${boardGame.description}</textarea>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="imagePath" class="col-sm-2 col-form-label">Image path</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="imagePath" id="imagePath" placeholder="Image URL">
+                        <input type="text" class="form-control" name="imagePath" id="imagePath" value="${boardGame.imagePath}" placeholder="Image URL">
                     </div>
                 </div>
 

@@ -10,5 +10,6 @@ public interface BoardGameService {
     List<BoardGame> findBoardGamesByTitle(String title);
     BoardGame findBoardGameById(Integer id);
     void saveBoardGame(BoardGame boardGame);
+    void updateBoardGame(int id, BoardGame boardGame);
     void deleteBoardGameById(int id);
 }
