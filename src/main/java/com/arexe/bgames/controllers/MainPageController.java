@@ -33,4 +33,11 @@ public class MainPageController {
         model.addAttribute("boardGameList", boardGamesList);
         return "index";
     }
+
+    @GetMapping(value = "/boardgame/{id}")
+    public String boardGameDetails(Model model, @PathVariable("id") int id) {
+        BoardGame boardGame = boardGameService.findBoardGameById(id);
+        model.addAttribute("boardGame", boardGame);
+        return "boardgame";
+    }
 }
