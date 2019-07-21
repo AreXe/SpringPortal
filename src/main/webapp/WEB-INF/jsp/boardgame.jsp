@@ -7,7 +7,7 @@
 <!-- Head -->
 <head>
     <%@include file="/WEB-INF/incl/head.app" %>
-<title><s:message code="title.mainPage"/></title>
+<title>${boardGame.title}  @ <s:message code="title.mainPage"/></title>
 </head>
 <body>
 <wrapper class="d-flex flex-column">
@@ -19,7 +19,7 @@
             <h1 class="display-3"><i class="fas fa-dice"></i> Senet</h1>
             <p>Explore and share your favourite Board Games</p>
             <div class="input-group">
-                <input class="form-control transparent-input text-white" type="text" id="searchValue" placeholder="Enter title" aria-label="Search">
+                <input class="form-control transparent-input text-white" type="text" id="searchValue" placeholder="Enter title" value="${boardGame.title}" aria-label="Search">
                 <div class="input-group-append">
                     <button class="btn btn-outline-light my-2 my-sm-0" type="button" id="searchButton" onclick="searchBoardGame();"><i class="fas fa-search"></i></button>
                 </div>
@@ -30,23 +30,22 @@
 <main class="container-fluid py-3 flex-fill">
 <div class="container">
 
-    <div class="container">
-        <div class="card-deck">
-            <c:forEach var="boardGame" items="${boardGameList}">
-            <div class="card border-primary shadow-sm">
-                <a href="${pageContext.request.contextPath}/boardgame/${boardGame.id}"><img class="card-img-top" src="${boardGame.imagePath}" alt="${boardGame.title}"></a>
-                <div class="card-body">
-                    <h5 class="card-title"><a href="${pageContext.request.contextPath}/boardgame/${boardGame.id}" class="card-link">${boardGame.title} (${boardGame.releaseYear})</a></h5>
-                    <p class="card-text"><i class="fas fa-users"></i> Players: ${boardGame.players}</p>
-                    <p class="card-text"><i class="far fa-clock"></i> Playing time: ${boardGame.playingTime} min</p>
-                    <p class="card-text"><i class="fas fa-child"></i> Age: ${boardGame.minAge}+</p>
-                </div>
-                <div class="card-footer" align="right">
-                    <a href="#" class="card-link text-danger"><i class="fas fa-heart"></i></a>
-                    <button type="button" class="btn btn-sm p-0 text-primary ml-3 js-copy" data-toggle="tooltip" title="Copy the link to ${boardGame.title}" data-copy="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/boardgame/${boardGame.id}"><i class="fas fa-share-alt"></i></button>
-                </div>
-            </div>
-            </c:forEach>
+    <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+            <span class="d-inline-block mb-2 text-primary">
+                <a href="#" class="card-link text-danger"><i class="fas fa-heart"></i></a>
+                <button type="button" class="btn btn-sm p-0 text-primary ml-3 js-copy" data-toggle="tooltip" title="Copy the link to ${boardGame.title}" data-copy="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/boardgame/${boardGame.id}"><i class="fas fa-share-alt"></i></button>
+            </span>
+            <h3 class="mb-0">${boardGame.title} (${boardGame.releaseYear})
+                <sec:authorize access="hasRole('ROLE_ADMIN')">
+                    <a type="button" class="btn btn-sm btn-outline-info" href="${pageContext.request.contextPath}/admin/boardgames/edit/${boardGame.id}">Edit</a>
+                </sec:authorize>
+            </h3>
+            <div class="m-3 text-muted"><i class="fas fa-users"></i> Players: ${boardGame.players}, <i class="far fa-clock"></i> Playing time: ${boardGame.playingTime} min, <i class="fas fa-child"></i> Age: ${boardGame.minAge}+</div>
+            <p class="card-text mb-auto">${boardGame.description}</p>
+        </div>
+        <div class="col-auto m-1 d-none d-lg-block">
+            <img class="card-img-top " src="${boardGame.imagePath}" alt="${boardGame.title}">
         </div>
     </div>
 

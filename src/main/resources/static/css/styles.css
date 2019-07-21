@@ -85,3 +85,61 @@ main {
     font-size: .75rem;
     text-transform: uppercase;
 }
+
+/*Jumbotron*/
+.jumbotron {
+    background-image: url(../img/cover.jpg);
+    background-size: cover;
+    text-align: center;
+}
+
+.jumbotron h1 {
+    font-weight: bold;
+}
+
+.jumbotron p {
+    font-size: 22px;
+}
+
+/*Card deck*/
+.card-deck {
+    margin: 0 -15px;
+    justify-content: space-between;
+}
+
+.card-deck .card {
+    margin: 0 0 1rem;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 15vw;
+    object-fit: cover;
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+    .card-deck .card {
+        -ms-flex: 0 0 48.7%;
+        flex: 0 0 48.7%;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .card-deck .card {
+        -ms-flex: 0 0 32%;
+        flex: 0 0 32%;
+    }
+}
+
+@media (min-width: 992px)
+{
+    .card-deck .card {
+        -ms-flex: 0 0 24%;
+        flex: 0 0 24%;
+    }
+}
+
+/*Transparent input*/
+.transparent-input{
+    background-color: transparent !important;
+}

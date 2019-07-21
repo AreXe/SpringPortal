@@ -1,7 +1,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="Portal">
-<meta name="keywords" content="portal, warehouse">
+<meta name="description" content="Senet - board games">
+<meta name="keywords" content="senet, board, games">
 <meta name="author" content="AreXe">
 <meta http-equiv="X-Ua-Compatible" content="IE=edge">
 
