@@ -7,7 +7,7 @@
 <!-- Head -->
 <head>
     <%@include file="/WEB-INF/incl/head.app" %>
-<title><s:message code="title.mainPage"/></title>
+<title>${boardGame.title}  @ <s:message code="title.mainPage"/></title>
 </head>
 <body>
 <wrapper class="d-flex flex-column">
@@ -34,7 +34,7 @@
         <div class="col p-4 d-flex flex-column position-static">
             <span class="d-inline-block mb-2 text-primary">
                 <a href="#" class="card-link text-danger"><i class="fas fa-heart"></i></a>
-                <a href="#" class="card-link text-primary ml-3"><i class="fas fa-share-alt"></i></a>
+                <button type="button" class="btn btn-sm p-0 text-primary ml-3 js-copy" data-toggle="tooltip" title="Copy the link to ${boardGame.title}" data-copy="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/boardgame/${boardGame.id}"><i class="fas fa-share-alt"></i></button>
             </span>
             <h3 class="mb-0">${boardGame.title} (${boardGame.releaseYear})
                 <sec:authorize access="hasRole('ROLE_ADMIN')">
@@ -53,6 +53,7 @@
 </main>
 <!-- Footer -->
     <%@include file="/WEB-INF/incl/footer.app" %>
+    <script src="/resources/scripts/clipboardcopy.js"></script>
     <script>
         document.getElementById('searchValue').addEventListener('keyup', function(event) {
             if (event.keyCode === 13) {

@@ -43,7 +43,7 @@
                 </div>
                 <div class="card-footer" align="right">
                     <a href="#" class="card-link text-danger"><i class="fas fa-heart"></i></a>
-                    <a href="#" class="card-link text-primary ml-3"><i class="fas fa-share-alt"></i></a>
+                    <button type="button" class="btn btn-sm p-0 text-primary ml-3 js-copy" data-toggle="tooltip" title="Copy the link to ${boardGame.title}" data-copy="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/boardgame/${boardGame.id}"><i class="fas fa-share-alt"></i></button>
                 </div>
             </div>
             </c:forEach>
@@ -54,6 +54,7 @@
 </main>
 <!-- Footer -->
     <%@include file="/WEB-INF/incl/footer.app" %>
+    <script src="/resources/scripts/clipboardcopy.js"></script>
     <script>
         document.getElementById('searchValue').addEventListener('keyup', function(event) {
             if (event.keyCode === 13) {
