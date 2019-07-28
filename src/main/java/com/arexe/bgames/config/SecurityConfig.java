@@ -3,6 +3,7 @@ package com.arexe.bgames.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -52,6 +53,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/adduser").permitAll()
                 .antMatchers("/boardgame/**").permitAll()
                 .antMatchers("/boardgame/search/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/boardgames").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/boardgames/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/boardgames/id/**").permitAll()
                 .anyRequest().authenticated()
                 .and().csrf().disable()
                 .formLogin()
