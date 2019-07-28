@@ -30,6 +30,13 @@ mvn spring-boot:run
 ```
 Application properties are available under the file `application.properties` which is needed to change the credentials and host of provided database.
 
+## Heroku deployment example
+Article: https://devcenter.heroku.com/articles/war-deployment
+```
+mvn package
+heroku plugins:install java
+heroku war:deploy target/bgames.war -a senetbg
+```
 ### Credentials
 Login to admin account using:
 * E-mail: admin@gmail.com

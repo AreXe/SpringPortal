@@ -13,7 +13,7 @@
 	<groupId>com.arexe</groupId>
 	<artifactId>bgames</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 	<name>bgames</name>
 	<description>Board games application made using Spring</description>
 
