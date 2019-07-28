@@ -3,6 +3,7 @@ package com.arexe.bgames.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -44,6 +45,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity httpSec) throws Exception {
         httpSec
+                .httpBasic()
+                .and()
                 .authorizeRequests()
                 .antMatchers("/").permitAll()
                 .antMatchers("/index").permitAll()
@@ -52,6 +55,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/adduser").permitAll()
                 .antMatchers("/boardgame/**").permitAll()
                 .antMatchers("/boardgame/search/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/boardgames").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/boardgames/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/boardgames/id/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/boardgames").hasRole("ADMIN")
+                .antMatchers(HttpMethod.PUT, "/api/boardgames/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.DELETE, "/api/boardgames/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and().csrf().disable()
                 .formLogin()

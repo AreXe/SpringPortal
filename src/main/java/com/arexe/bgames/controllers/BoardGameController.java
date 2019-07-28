@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-public class BoardGamesController {
+public class BoardGameController {
 
     private final BoardGameService boardGameService;
 
     @Autowired
-    public BoardGamesController(BoardGameService boardGameService) {
+    public BoardGameController(BoardGameService boardGameService) {
         this.boardGameService = boardGameService;
     }
 
