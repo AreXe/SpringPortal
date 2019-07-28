@@ -14,6 +14,15 @@ Application is available @ Heroku:
 ## Index view of Senet app
 ![senet-view](images/senet-view.png)
 
+## RESTful service usage
+Available methods for board games CRUD service:
+* `GET` /api/boardgames - return board games list as JSON
+* `GET` /api/boardgames/{title} - return board games list by title
+* `GET` /api/boardgames/{id} - return board game by given ID
+* `POST` /api/boardgames - add new board game (for Admin)
+* `PUT` /api/boardgames/{id} - update board game by given ID (for Admin)
+* `DELETE` /api/boardgames/{id} - delete board game by given ID (for Admin)
+
 ## How to run the application
 The project includes Spring Boot Maven Plugin, so using this command will build and run the application:
 ```

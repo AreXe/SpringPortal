@@ -45,6 +45,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity httpSec) throws Exception {
         httpSec
+                .httpBasic()
+                .and()
                 .authorizeRequests()
                 .antMatchers("/").permitAll()
                 .antMatchers("/index").permitAll()
@@ -56,6 +58,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/api/boardgames").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/boardgames/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/boardgames/id/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/boardgames").hasRole("ADMIN")
+                .antMatchers(HttpMethod.PUT, "/api/boardgames/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.DELETE, "/api/boardgames/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and().csrf().disable()
                 .formLogin()
