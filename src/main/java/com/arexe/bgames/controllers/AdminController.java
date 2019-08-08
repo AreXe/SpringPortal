@@ -4,6 +4,8 @@ import com.arexe.bgames.entity.User;
 import com.arexe.bgames.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.HashMap;
 import java.util.List;
@@ -36,9 +39,20 @@ public class AdminController {
 
     @GetMapping(value = "/admin/users")
     @Secured(value = {"ROLE_ADMIN"})
-    public String userPanel(Model model) {
-        List<User> userList = getUserList();
+    public ModelAndView userPanelRedirect() {
+        return new ModelAndView("redirect:/admin/users/1");
+    }
+
+    @GetMapping(value = "/admin/users/{page}")
+    @Secured(value = {"ROLE_ADMIN"})
+    public String userPanel(@PathVariable("page") int page, Model model) {
+        Page<User> userListPageable = getUserListPageable(page - 1);
+        List<User> userList = userListPageable.getContent();
+        int totalPages = userListPageable.getTotalPages();
+        int currentPage = userListPageable.getNumber();
         model.addAttribute("userList", userList);
+        model.addAttribute("totalPages", totalPages);
+        model.addAttribute("currentPage", currentPage + 1);
         return "admin/users";
     }
 
@@ -80,6 +94,16 @@ public class AdminController {
 
     private List<User> getUserList() {
         List<User> userList = adminService.getUserList();
+        for (User user : userList) {
+            int roleNumber = user.getRoles().iterator().next().getId();
+            user.setRoleNumber(roleNumber);
+        }
+        return userList;
+    }
+
+    private Page<User> getUserListPageable(int page) {
+        int elements = 5;
+        Page<User> userList = adminService.getUserListPageable(PageRequest.of(page, elements));
         for (User user : userList) {
             int roleNumber = user.getRoles().iterator().next().getId();
             user.setRoleNumber(roleNumber);
