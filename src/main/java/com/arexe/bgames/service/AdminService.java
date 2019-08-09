@@ -11,6 +11,7 @@ public interface AdminService {
     List<User> getUserList();
     Page<User> getUserListPageable(Pageable pageable);
     List<User> findUsersByName(String name);
+    Page<User> findUsersByNamePageable(String name, Pageable pageable);
     User getUserById(int id);
     void updateUserStatus(int id, int roleNumber, int active);
     void deleteUserById(int id);

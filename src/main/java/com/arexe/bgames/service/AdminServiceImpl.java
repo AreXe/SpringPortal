@@ -40,6 +40,12 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
+    public Page<User> findUsersByNamePageable(String name, Pageable pageable) {
+        Page<User> userList = adminRepository.findUsersByNamePageable(name, pageable);
+        return userList;
+    }
+
+    @Override
     public User getUserById(int id) {
         User userById = adminRepository.findUserById(id);
         return userById;

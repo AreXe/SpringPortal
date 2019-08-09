@@ -48,19 +48,26 @@ public class AdminController {
     public String userPanel(@PathVariable("page") int page, Model model) {
         Page<User> userListPageable = getUserListPageable(page - 1);
         List<User> userList = userListPageable.getContent();
-        int totalPages = userListPageable.getTotalPages();
-        int currentPage = userListPageable.getNumber();
+        setUserPages(model, userListPageable);
         model.addAttribute("userList", userList);
-        model.addAttribute("totalPages", totalPages);
-        model.addAttribute("currentPage", currentPage + 1);
+        model.addAttribute("path", "admin/users");
         return "admin/users";
     }
 
     @GetMapping(value = "/admin/users/search/{name}")
     @Secured(value = {"ROLE_ADMIN"})
-    public String searchUsers(Model model, @PathVariable("name") String name) {
-        List<User> userList = findUsersByName(name);
+    public ModelAndView userSearchRedirect(@PathVariable("name") String name) {
+        return new ModelAndView("redirect:/admin/users/search/" + name + "/1");
+    }
+
+    @GetMapping(value = "/admin/users/search/{name}/{page}")
+    @Secured(value = {"ROLE_ADMIN"})
+    public String searchUsers(Model model, @PathVariable("name") String name, @PathVariable("page") int page) {
+        Page<User> userListPageable = findUsersByNamePageable(name, page - 1);
+        List<User> userList = userListPageable.getContent();
+        setUserPages(model, userListPageable);
         model.addAttribute("userList", userList);
+        model.addAttribute("path", "admin/users/search/" + name);
         return "admin/users";
     }
 
@@ -69,12 +76,10 @@ public class AdminController {
     public String userEditPanel(Model model, @PathVariable("id") int id) {
         User userById = getUserById(id);
         model.addAttribute("user", userById);
-
         Map<Integer, String> roleMap = roleMap();
         Map<Integer, String> activityMap = activityMap();
         model.addAttribute("roleMap", roleMap);
         model.addAttribute("activityMap", activityMap);
-
         return "admin/edituser";
     }
 
@@ -120,11 +125,28 @@ public class AdminController {
         return userList;
     }
 
+    private Page<User> findUsersByNamePageable(String name, int page) {
+        int elements = 5;
+        Page<User> userList = adminService.findUsersByNamePageable(name, PageRequest.of(page, elements));
+        for (User user : userList) {
+            int roleNumber = user.getRoles().iterator().next().getId();
+            user.setRoleNumber(roleNumber);
+        }
+        return userList;
+    }
+
     private User getUserById(int id) {
         User userById = adminService.getUserById(id);
         int roleNumber = userById.getRoles().iterator().next().getId();
         userById.setRoleNumber(roleNumber);
         return userById;
+    }
+
+    private void setUserPages(Model model, Page<User> userListPageable) {
+        int totalPages = userListPageable.getTotalPages();
+        int currentPage = userListPageable.getNumber();
+        model.addAttribute("totalPages", totalPages);
+        model.addAttribute("currentPage", currentPage + 1);
     }
 
     private Map<Integer, String> activityMap() {
