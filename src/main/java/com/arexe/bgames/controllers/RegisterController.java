@@ -3,6 +3,7 @@ package com.arexe.bgames.controllers;
 import com.arexe.bgames.entity.User;
 import com.arexe.bgames.service.UserService;
 import com.arexe.bgames.validators.RegisterValidator;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.context.MessageSource;
@@ -18,6 +19,7 @@ import javax.validation.Valid;
 import java.util.Locale;
 
 @Controller
+@Slf4j(topic = "bgames.logger")
 public class RegisterController {
 
     private final UserService userService;
@@ -56,9 +58,11 @@ public class RegisterController {
         new RegisterValidator().validate(user, result);
 
         if (result.hasErrors()) {
+            log.error("[REG] Register failed: " + result.toString());
             returnPage = "register";
         } else {
             userService.saveUser(user);
+            log.info("[REG] New account registered: " + user.getLogin() + ", email: "+ user.getEmail());
             model.addAttribute("message", messageSource.getMessage("register.success", null, locale));
             returnPage = "login";
         }

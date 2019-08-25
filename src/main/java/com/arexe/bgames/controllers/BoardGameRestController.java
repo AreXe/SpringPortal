@@ -2,6 +2,7 @@ package com.arexe.bgames.controllers;
 
 import com.arexe.bgames.entity.BoardGame;
 import com.arexe.bgames.service.BoardGameService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,7 @@ import javax.persistence.EntityNotFoundException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Board Games RESTful service
@@ -20,6 +22,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/api")
+@Slf4j(topic = "bgames.logger")
 public class BoardGameRestController {
 
     private final BoardGameService boardGameService;
@@ -37,7 +40,9 @@ public class BoardGameRestController {
      */
     @GetMapping("/boardgames")
     public ResponseEntity<List<BoardGame>> getAllBoardGames() {
-        return new ResponseEntity<>(boardGameService.findAllBoardGames(), HttpStatus.OK);
+        List<BoardGame> boardGameList = boardGameService.findAllBoardGames();
+        log.info("[BG_REST] List of returned bgames: " + boardGameList.stream().map(BoardGame::getTitle).collect(Collectors.toList()));
+        return new ResponseEntity<>(boardGameList, HttpStatus.OK);
     }
 
     /**
@@ -50,7 +55,9 @@ public class BoardGameRestController {
     @GetMapping("/boardgames/id/{id}")
     public ResponseEntity<BoardGame> getBoardGameById(@PathVariable int id) {
         try {
-            return new ResponseEntity<>(boardGameService.findBoardGameById(id), HttpStatus.OK);
+            BoardGame boardGame = boardGameService.findBoardGameById(id);
+            log.info("[BG_REST] Returned bgame: " + boardGame.getTitle());
+            return new ResponseEntity<>(boardGame, HttpStatus.OK);
         } catch (EntityNotFoundException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -66,6 +73,7 @@ public class BoardGameRestController {
     @GetMapping("/boardgames/{title}")
     public ResponseEntity<List<BoardGame>> getBoardGameByTitle(@PathVariable String title) {
         List<BoardGame> boardGames = boardGameService.findBoardGamesByTitle(title);
+        log.info("[BG_REST] List of returned bgames: " + boardGames.stream().map(BoardGame::getTitle).collect(Collectors.toList()));
         if (boardGames.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -82,6 +90,7 @@ public class BoardGameRestController {
     @PostMapping("/boardgames")
     public ResponseEntity<BoardGame> addBoardGame(@RequestBody BoardGame boardGame) throws URISyntaxException {
         boardGameService.saveBoardGame(boardGame);
+        log.info("[BG_REST] Added new bgame: " + boardGame.getTitle());
         return ResponseEntity.created(new URI("boardgame" + boardGame.getId())).body(boardGame);
     }
 
@@ -98,6 +107,7 @@ public class BoardGameRestController {
             return ResponseEntity.badRequest().build();
         }
         boardGameService.updateBoardGame(id, boardGame);
+        log.info("[BG_REST] Updated bgame: " + boardGame.toString());
         return ResponseEntity.ok().body(boardGame);
     }
 
@@ -113,6 +123,7 @@ public class BoardGameRestController {
         if (boardGameService.findBoardGameById(id) == null) {
             return ResponseEntity.badRequest().build();
         }
+        log.info("[BG_REST] Deleting bgame: " + boardGameService.findBoardGameById(id).toString());
         boardGameService.deleteBoardGameById(id);
         return ResponseEntity.ok().build();
     }
