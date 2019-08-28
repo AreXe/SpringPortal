@@ -47,7 +47,7 @@ public class BoardGameRestController {
 
     /**
      * Get board game by ID
-     * Usage: GET /api/boardgames/{id}
+     * Usage: GET /api/boardgames/id/{id}
      *
      * @param id board game ID
      * @return board game as JSON

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <style>
+        .main {background-color: #f7f7f7;}
+        .logo {font-size: 20px; font-style: italic; color: white; background-color: #292b2c;} .logo p {margin-left: 30px;}
+        .header {font-size: 22px; font-weight: bold; margin: 0 0 10px;}
+        .footer {font-size: 12px; font-family: sans-serif; color: #5bc0de;}
+    </style>
+</head>
+<body class="main"><center>
+    <table width="640" cellpadding="0" cellspacing="0" border="0" bgcolor="#ffffff"><tr><td align="center" valign="top">
+        <table width="640" cellpadding="0" cellspacing="0" border="0"><tr><td valign="top" class="logo">
+            <p th:text="#{email.logo.txt}">Logo</p>
+        </td></tr></table>
+        <table width="600" cellpadding="0" cellspacing="0" border="0">
+            <tr><td align="center" valign="top">
+                <p class="header"><span th:text="#{email.welcome}" th:remove="tag">Welcome</span> <span th:text="${user.login}" th:remove="tag">user</span>!<p>
+            </td></tr>
+            <tr><td>
+                <p><span th:utext="#{email.activation.msg}" th:remove="tag">Message</span>
+                   <span th:text="${actLink}" th:remove="tag">Link</span><p>
+        </td></tr></table>
+    </td></tr></table>
+    <table border="0" cellpadding="0" cellspacing="0"><tr><td class="footer">
+        <p><span th:utext="#{email.footer}">Footer</span></p>
+    </td></tr></table>
+</center></body>
+</html>

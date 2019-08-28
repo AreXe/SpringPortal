@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void saveUser(User user) {
-        user.setActive(1);
+        user.setActive(0); //0 = disabled, new account registered
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         Role role = roleRepository.findByRole("ROLE_USER");
@@ -37,6 +37,11 @@ public class UserServiceImpl implements UserService {
 
         userRepository.save(user);
 
+    }
+
+    @Override
+    public User findUserById(int id) {
+        return userRepository.findUserById(id);
     }
 
     @Override
@@ -57,5 +62,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public void updateUserProfile(String login, String firstName, String lastName, String email) {
         userRepository.updateUserProfile(login, firstName, lastName, email);
+    }
+
+    @Override
+    public void updateActiveStatus(int id, int active, String activationToken) {
+        userRepository.updateActiveStatus(id, active, activationToken);
     }
 }
