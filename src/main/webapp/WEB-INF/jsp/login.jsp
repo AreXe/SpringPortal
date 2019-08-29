@@ -51,6 +51,9 @@
                 <div class="alert alert-info text-center" role="alert">
                     Don't have an account? Create it <a href="/register" class="alert-link">here</a>
                 </div>
+                <div class="alert alert-info text-center" role="alert">
+                    <a href="/password-reset" class="alert-link">Forgot password?</a>
+                </div>
 
             </div>
         </div>

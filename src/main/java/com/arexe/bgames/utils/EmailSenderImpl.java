@@ -2,6 +2,7 @@ package com.arexe.bgames.utils;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailAuthenticationException;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
@@ -28,10 +29,10 @@ public class EmailSenderImpl implements EmailSender {
             helper.setTo(to);
             helper.setSubject(subject);
             helper.setText(text, true);
-        } catch (MessagingException e) {
+            javaMailSender.send(message);
+            log.info("[EMAIL_SENDER] E-mail sent to " + to + ", subject: " + subject);
+        } catch (MessagingException | MailAuthenticationException e) {
             log.error("[EMAIL_SENDER] E-mail could not be sent to " + to + ", subject: " + subject, e);
         }
-        javaMailSender.send(message);
-        log.info("[EMAIL_SENDER] E-mail sent to " + to + ", subject: " + subject);
     }
 }

@@ -1,7 +1,9 @@
 package com.arexe.bgames.service;
 
+import com.arexe.bgames.entity.PasswordToken;
 import com.arexe.bgames.entity.Role;
 import com.arexe.bgames.entity.User;
+import com.arexe.bgames.repository.PasswordTokenRepository;
 import com.arexe.bgames.repository.RoleRepository;
 import com.arexe.bgames.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,12 +21,14 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final BCryptPasswordEncoder passwordEncoder;
+    private final PasswordTokenRepository passwordTokenRepository;
 
     @Autowired
-    UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, BCryptPasswordEncoder passwordEncoder) {
+    UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, BCryptPasswordEncoder passwordEncoder, PasswordTokenRepository passwordTokenRepository) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
+        this.passwordTokenRepository = passwordTokenRepository;
     }
 
     @Override
@@ -40,6 +44,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void savePasswordToken(PasswordToken passwordToken) {
+        passwordTokenRepository.save(passwordToken);
+    }
+
+    @Override
     public User findUserById(int id) {
         return userRepository.findUserById(id);
     }
@@ -52,6 +61,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findUserByLogin(String login) {
         return userRepository.findUserByLogin(login);
+    }
+
+    @Override
+    public PasswordToken findPasswordToken(String passwordToken) {
+        return passwordTokenRepository.findPasswordTokenByPasswordToken(passwordToken);
     }
 
     @Override

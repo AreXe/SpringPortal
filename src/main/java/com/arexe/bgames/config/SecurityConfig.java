@@ -54,6 +54,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/register").permitAll()
                 .antMatchers("/adduser").permitAll()
                 .antMatchers("/activate/**").permitAll()
+                .antMatchers("/password-reset/**", "/password-reset-proceed").permitAll()
                 .antMatchers("/boardgame/**").permitAll()
                 .antMatchers("/boardgame/search/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/boardgames").permitAll()
