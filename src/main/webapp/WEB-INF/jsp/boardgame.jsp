@@ -10,7 +10,7 @@
 <title>${boardGame.title}  @ <s:message code="title.mainPage"/></title>
 </head>
 <body>
-<wrapper class="d-flex flex-column">
+<wrapper class="d-flex flex-column bg-anim">
 <!-- Navigation -->
     <%@include file="/WEB-INF/incl/nav.app" %>
 <!-- Page Content -->
@@ -30,7 +30,7 @@
 <main class="container-fluid py-3 flex-fill">
 <div class="container">
 
-    <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+    <div class="card row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
         <div class="col p-4 d-flex flex-column position-static">
             <span class="d-inline-block mb-2 text-primary">
                 <a href="#" class="card-link text-danger"><i class="fas fa-heart"></i></a>

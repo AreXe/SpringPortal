@@ -11,7 +11,7 @@
     <title><s:message code="title.register"/></title>
 </head>
 <body>
-<wrapper class="d-flex flex-column">
+<wrapper class="d-flex flex-column bg-anim">
     <!-- Navigation -->
     <%@include file="/WEB-INF/incl/nav.app" %>
     <!-- Page Content -->

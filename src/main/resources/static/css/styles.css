@@ -11,6 +11,32 @@ main {
     flex: 1;
 }
 
+/*Animated background*/
+.bg-anim {
+    background: linear-gradient(300deg, #9be1d2, #306bac, #66c7f4);
+    background-size: 600% 600%;
+
+    -webkit-animation: bg-anim 12s ease infinite;
+    -moz-animation: bg-anim 12s ease infinite;
+    animation: bg-anim 12s ease infinite;
+}
+
+@-webkit-keyframes bg-anim {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@-moz-keyframes bg-anim {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@keyframes bg-anim {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+
 /*Feather icons*/
 .feather {
     width: 20px;
