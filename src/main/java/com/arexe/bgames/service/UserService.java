@@ -13,5 +13,6 @@ public interface UserService {
     PasswordToken findPasswordToken(String passwordToken);
     void updateUserPassword(String newPassword, String email);
     void updateUserProfile(String login, String firstName, String lastName, String email);
+    void updateUserImage(String imagePath, String email);
     void updateActiveStatus(int id, int active, String activationToken);
 }

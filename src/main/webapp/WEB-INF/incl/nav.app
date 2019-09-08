@@ -16,7 +16,7 @@
 
                 <sec:authorize access="hasRole('ANONYMOUS')">
                 <li class="nav-item">
-                    <a class="nav-link" id="nav-login" href="/login">Log in</a>
+                    <a class="nav-link btn btn-outline-primary btn-sm" id="nav-login" href="/login">Log in</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="nav-register" href="/register">Register</a>
@@ -25,22 +25,22 @@
 
                 <sec:authorize access="hasRole('ROLE_ADMIN')">
                 <li class="nav-item">
-                    <a class="nav-link text-danger" id="nav-admin" href="/admin">Admin</a>
+                    <a class="nav-link text-danger" id="nav-admin" href="/admin"><i class="fas fa-tools"></i> Admin</a>
                 </li>
                 </sec:authorize>
 
                 <sec:authorize access="isAuthenticated()">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="nav-profile" href="#" id="profileDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Profile</a>
+                    <a class="nav-link dropdown-toggle" id="nav-profile" href="#" data-toggle="dropdown" aria-expanded="false">Profile</a>
                     <div class="dropdown-menu" aria-labelledby="profileDropdown">
-                        <a class="dropdown-item" href="${pageContext.request.contextPath}/profile">Your profile</a>
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/profile"><i class="far fa-user"></i> My profile</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="${pageContext.request.contextPath}/editprofile">Edit profile</a>
-                        <a class="dropdown-item" href="${pageContext.request.contextPath}/changepassword">Change password</a>
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/editprofile"><i class="fas fa-user-edit"></i> Edit profile</a>
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/changepassword"><i class="fas fa-key"></i> Change password</a>
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/logout">Log out</a>
+                    <a class="nav-link btn btn-outline-primary btn-sm" href="/logout">Log out</a>
                 </li>
                 </sec:authorize>
             </ul>

@@ -10,7 +10,7 @@
 <title><s:message code="title.profile"/></title>
 </head>
 <body>
-<wrapper class="d-flex flex-column">
+<wrapper class="d-flex flex-column bg-anim">
 <!-- Navigation -->
     <%@include file="/WEB-INF/incl/nav.app" %>
 <!-- Page Content -->
@@ -27,6 +27,15 @@
                     <tr>
                         <th>Login:</th>
                         <td><c:out value="${user.login}"/></td>
+                        <td rowspan="5">
+                        <c:choose>
+                            <c:when test="${user.imagePath != null}">
+                                <img class="image-responsive rounded" src="${user.imagePath}" alt="${user.login}" width="150">
+                            </c:when>
+                            <c:otherwise>
+                                <img class="image-responsive rounded" src="/resources/img/avatarph.png" alt="${user.login}" width="150"></td>
+                            </c:otherwise>
+                        </c:choose>
                     </tr>
                     <tr>
                         <th>Email:</th>

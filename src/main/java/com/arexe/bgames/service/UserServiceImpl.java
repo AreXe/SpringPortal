@@ -79,6 +79,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void updateUserImage(String imagePath, String email) {
+        userRepository.updateUserImage(imagePath, email);
+    }
+
+    @Override
     public void updateActiveStatus(int id, int active, String activationToken) {
         userRepository.updateActiveStatus(id, active, activationToken);
     }

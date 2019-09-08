@@ -45,7 +45,7 @@
             <p class="card-text mb-auto">${boardGame.description}</p>
         </div>
         <div class="col-auto m-1 d-none d-lg-block">
-            <img class="card-img-top " src="${boardGame.imagePath}" alt="${boardGame.title}">
+            <img class="card-img-top" src="${boardGame.imagePath}" alt="${boardGame.title}">
         </div>
     </div>
 

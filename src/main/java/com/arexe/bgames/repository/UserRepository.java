@@ -23,6 +23,10 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     void updateUserProfile(@Param("login") String login, @Param("firstName") String firstName, @Param("lastName") String lastName, @Param("email") String email);
 
     @Modifying
+    @Query("UPDATE User u SET u.imagePath=:imagePath WHERE u.email=:email")
+    void updateUserImage(@Param("imagePath") String imagePath, @Param("email") String email);
+
+    @Modifying
     @Query("UPDATE User u SET u.active=:active WHERE u.activationToken=:activationToken AND u.id=:id")
     void updateActiveStatus(@Param("id") int id, @Param("active") int active, @Param("activationToken") String activationToken);
 }

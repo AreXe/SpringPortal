@@ -91,14 +91,18 @@ public class UserProfileController {
             redirectPage = "editprofile";
         } else {
             userService.updateUserProfile(user.getLogin(), user.getFirstName(), user.getLastName(), user.getEmail());
-            redirectPage = "editinfo";
-            model.addAttribute("message", messageSource.getMessage("editProfile.success", null, locale));
+            userService.updateUserImage(user.getImagePath(), user.getEmail());
+            if (!actualUser.getLogin().equals(user.getLogin())) {
+                redirectPage = "editinfo";
+                model.addAttribute("message", messageSource.getMessage("editProfile.success", null, locale));
+            } else {
+                redirectPage = "profile";
+            }
         }
-
         return redirectPage;
     }
 
-    private User getLoggedUser(){
+    private User getLoggedUser() {
         String loggedUser = UserUtils.getLoggedUser();
         return userService.findUserByEmail(loggedUser);
     }

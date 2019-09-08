@@ -11,7 +11,7 @@
 <title><s:message code="title.editProfile"/></title>
 </head>
 <body>
-<wrapper class="d-flex flex-column">
+<wrapper class="d-flex flex-column bg-anim">
 <!-- Navigation -->
     <%@include file="/WEB-INF/incl/nav.app" %>
 <!-- Page Content -->
@@ -42,6 +42,10 @@
                     <div class="form-group px-3">
                         <label for="lastName"><s:message code="register.lastName"/></label>
                         <sf:input type="text" path="lastName" id="firstName" placeholder="Last name" value="${user.lastName}" cssClass="form-control" pattern=".{1,50}" maxlength="50" title="1 to 50 characters" data-toggle="tooltip" data-placement="top" required="required"/>
+                    </div>
+                    <div class="form-group px-3">
+                        <label for="lastName"><s:message code="profile.imagePath"/></label>
+                        <sf:input type="text" path="imagePath" id="imagePath" placeholder="Image URL" value="${user.imagePath}" cssClass="form-control" maxlength="250"/>
                     </div>
                     <div class="form-group px-3 text-center">
                         <button type="submit" class="btn btn-primary">Edit profile</button>
