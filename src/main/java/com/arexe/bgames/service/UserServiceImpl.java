@@ -40,7 +40,6 @@ public class UserServiceImpl implements UserService {
         user.setRoles(new HashSet<>(Collections.singletonList(role)));
 
         userRepository.save(user);
-
     }
 
     @Override

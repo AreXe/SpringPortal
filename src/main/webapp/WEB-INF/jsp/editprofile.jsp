@@ -45,7 +45,7 @@
                     </div>
                     <div class="form-group px-3">
                         <label for="lastName"><s:message code="profile.imagePath"/></label>
-                        <sf:input type="text" path="imagePath" id="imagePath" placeholder="Image URL" value="${user.imagePath}" cssClass="form-control" maxlength="250"/>
+                        <sf:input type="text" path="imagePath" id="imagePath" placeholder="Image URL" value="${user.imagePath}" cssClass="form-control" maxlength="250" title="Preferred 150x150 px" data-toggle="tooltip" data-placement="top"/>
                     </div>
                     <div class="form-group px-3 text-center">
                         <button type="submit" class="btn btn-primary">Edit profile</button>
