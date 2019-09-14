@@ -13,4 +13,5 @@ public interface FavouriteRepository extends JpaRepository<Favourite, Long> {
 
     List<Favourite> findAllByUser(User user);
     List<Favourite> findAllByBoardGame(BoardGame boardGame);
+    void deleteFavouriteByUserAndBoardGame(User user, BoardGame boardGame);
 }

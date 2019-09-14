@@ -11,5 +11,5 @@ public interface FavouriteService {
     void saveFavourite(Favourite favourite);
     List<Favourite> getFavouritesByUser(User user);
     List<Favourite> getFavouritesByBoardGame(BoardGame boardGame);
-    void deleteFavouriteById(Long id);
+    void deleteFavouriteByUserAndBoardGame(User user, BoardGame boardGame);
 }
