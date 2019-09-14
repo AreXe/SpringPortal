@@ -48,7 +48,15 @@ public class MainPageController {
     @GetMapping(value = "/boardgame/search/{title}")
     public String searchBoardGames(Model model, @PathVariable("title") String title) {
         List<BoardGame> boardGamesList = boardGameService.findBoardGamesByTitle(title);
-        model.addAttribute("boardGameList", boardGamesList);
+        User user = getLoggedUser();
+        if (user == null) {
+            model.addAttribute("boardGameList", boardGamesList);
+        } else {
+            List<BoardGame> favByUserAndTitle = favouriteService.getFavouritesByUserAndBoardGameTitle(user, title).stream().map(Favourite::getBoardGame).collect(Collectors.toList());
+            List<BoardGame> boardGameOthersList = boardGamesList.stream().filter(i -> !favByUserAndTitle.contains(i)).collect(Collectors.toList());
+            model.addAttribute("boardGameLikedList", favByUserAndTitle);
+            model.addAttribute("boardGameOthersList", boardGameOthersList);
+        }
         return "index";
     }
 

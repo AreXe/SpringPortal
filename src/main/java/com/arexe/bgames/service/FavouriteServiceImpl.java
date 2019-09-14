@@ -37,6 +37,11 @@ public class FavouriteServiceImpl implements FavouriteService {
     }
 
     @Override
+    public List<Favourite> getFavouritesByUserAndBoardGameTitle(User user, String title) {
+        return favouriteRepository.findAllByUserAndBoardGame_TitleContaining(user, title);
+    }
+
+    @Override
     public void deleteFavouriteByUserAndBoardGame(User user, BoardGame boardGame) {
         favouriteRepository.deleteFavouriteByUserAndBoardGame(user, boardGame);
     }
