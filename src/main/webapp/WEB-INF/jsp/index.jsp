@@ -44,7 +44,7 @@
                 </div>
                 <div class="card-footer" align="right">
                     <form action="${pageContext.request.contextPath}/addfav/${boardGame.id}" method="POST" style="display: inline-block;">
-                        <button type="submit" class="btn btn-sm p-0 text-danger"><i class="far fa-heart"></i></button>
+                        <button type="submit" class="btn btn-sm p-0 text-danger" data-toggle="tooltip" title="Add ${boardGame.title} to favourites"><i class="far fa-heart"></i></button>
                     </form>
                     <button type="button" class="btn btn-sm p-0 text-primary ml-3 js-copy" data-toggle="tooltip" title="Copy the link to ${boardGame.title}" data-copy="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/boardgame/${boardGame.id}"><i class="fas fa-share-alt"></i></button>
                 </div>
@@ -69,7 +69,7 @@
                         </div>
                         <div class="card-footer" align="right">
                             <form action="${pageContext.request.contextPath}/addfav/${boardGame.id}" method="POST" style="display: inline-block;">
-                                <button type="submit" class="btn btn-sm p-0 text-danger"><i class="fas fa-heart"></i></button>
+                                <button type="submit" class="btn btn-sm p-0 text-danger" data-toggle="tooltip" title="Delete ${boardGame.title} from favourites"><i class="fas fa-heart"></i></button>
                             </form>
                             <button type="button" class="btn btn-sm p-0 text-primary ml-3 js-copy" data-toggle="tooltip" title="Copy the link to ${boardGame.title}" data-copy="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/boardgame/${boardGame.id}"><i class="fas fa-share-alt"></i></button>
                         </div>
@@ -92,7 +92,7 @@
                         </div>
                         <div class="card-footer" align="right">
                             <form action="${pageContext.request.contextPath}/addfav/${boardGame.id}" method="POST" style="display: inline-block;">
-                                <button type="submit" class="btn btn-sm p-0 text-danger"><i class="far fa-heart"></i></button>
+                                <button type="submit" class="btn btn-sm p-0 text-danger" data-toggle="tooltip" title="Add ${boardGame.title} to favourites"><i class="far fa-heart"></i></button>
                             </form>
                             <button type="button" class="btn btn-sm p-0 text-primary ml-3 js-copy" data-toggle="tooltip" title="Copy the link to ${boardGame.title}" data-copy="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/boardgame/${boardGame.id}"><i class="fas fa-share-alt"></i></button>
                         </div>

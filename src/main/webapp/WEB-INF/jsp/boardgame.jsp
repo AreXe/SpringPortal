@@ -33,7 +33,21 @@
     <div class="card row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
         <div class="col p-4 d-flex flex-column position-static">
             <span class="d-inline-block mb-2 text-primary">
-                <a href="#" class="card-link text-danger"><i class="fas fa-heart"></i></a>
+                <sec:authorize access="hasRole('ANONYMOUS')">
+                    <form action="${pageContext.request.contextPath}/addfav/${boardGame.id}" method="POST" style="display: inline-block;">
+                        <button type="submit" class="btn btn-sm p-0 text-danger" data-toggle="tooltip" title="Add ${boardGame.title} to favourites"><i class="far fa-heart"></i></button>
+                    </form>
+                </sec:authorize>
+                <sec:authorize access="isAuthenticated()">
+                <c:choose>
+                    <c:when test="${inFavouriteList eq true}">
+                        <button class="btn btn-sm p-0 text-danger" onclick="$.post('${pageContext.request.contextPath}/addfav/${boardGame.id}').done(function() {location.reload()})" data-toggle="tooltip" title="Delete ${boardGame.title} from favourites"><i class="fas fa-heart"></i></button>
+                    </c:when>
+                    <c:otherwise>
+                        <button class="btn btn-sm p-0 text-danger" onclick="$.post('${pageContext.request.contextPath}/addfav/${boardGame.id}').done(function() {location.reload()})" data-toggle="tooltip" title="Add ${boardGame.title} to favourites"><i class="far fa-heart"></i></button>
+                    </c:otherwise>
+                </c:choose>
+                </sec:authorize>
                 <button type="button" class="btn btn-sm p-0 text-primary ml-3 js-copy" data-toggle="tooltip" title="Copy the link to ${boardGame.title}" data-copy="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/boardgame/${boardGame.id}"><i class="fas fa-share-alt"></i></button>
             </span>
             <h3 class="mb-0">${boardGame.title} (${boardGame.releaseYear})

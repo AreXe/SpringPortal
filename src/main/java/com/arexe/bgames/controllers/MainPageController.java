@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 @Controller
@@ -63,6 +64,10 @@ public class MainPageController {
     @GetMapping(value = "/boardgame/{id}")
     public String boardGameDetails(Model model, @PathVariable("id") int id) {
         BoardGame boardGame = boardGameService.findBoardGameById(id);
+        boolean isInUserFavList = favouriteService.getFavouritesByUser(getLoggedUser()).stream().map(Favourite::getBoardGame).anyMatch(Predicate.isEqual(boardGame));
+        if (isInUserFavList) {
+            model.addAttribute("inFavouriteList", true);
+        }
         model.addAttribute("boardGame", boardGame);
         return "boardgame";
     }
