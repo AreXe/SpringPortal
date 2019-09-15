@@ -20,7 +20,7 @@
 
     <div class="col-md-6 offset-md-3">
         <div class="card border-primary">
-            <h4 class="card-header">Change password</h4>
+            <h4 class="card-header">Change lost password</h4>
             <div class="card-body">
                 <c:if test="${not empty message}">
                     <div class="alert alert-info" role="alert">
@@ -28,7 +28,7 @@
                     </div>
                 </c:if>
 
-                <sf:form id="usersForm" action="updatepassword" modelAttribute="user" enctype="multipart/form-data" method="POST">
+                <sf:form id="usersForm" action="${pageContext.request.contextPath}/password-reset-proceed" modelAttribute="user" enctype="multipart/form-data" method="POST">
                     <sf:hidden path="email"/>
                     <div class="form-group px-3">
                         <label for="password">New password</label>
@@ -46,9 +46,6 @@
                         <button type="submit" class="btn btn-primary">Change password</button>
                     </div>
                 </sf:form>
-                <div class="text-center my-2">
-                    <button class="btn btn-outline-primary" type="button" onclick="history.back();"><s:message code="button.return"/></button>
-                </div>
             </div>
         </div>
     </div>

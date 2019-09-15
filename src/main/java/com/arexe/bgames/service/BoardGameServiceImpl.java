@@ -3,6 +3,8 @@ package com.arexe.bgames.service;
 import com.arexe.bgames.entity.BoardGame;
 import com.arexe.bgames.repository.BoardGameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
@@ -23,6 +25,11 @@ public class BoardGameServiceImpl implements BoardGameService {
     @Override
     public List<BoardGame> findAllBoardGames() {
         return boardGameRepository.findAll();
+    }
+
+    @Override
+    public Page<BoardGame> findAllBoardGamesPageable(Pageable pageable) {
+        return boardGameRepository.findAll(pageable);
     }
 
     @Override

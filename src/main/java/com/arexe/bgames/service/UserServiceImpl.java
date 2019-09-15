@@ -1,7 +1,9 @@
 package com.arexe.bgames.service;
 
+import com.arexe.bgames.entity.PasswordToken;
 import com.arexe.bgames.entity.Role;
 import com.arexe.bgames.entity.User;
+import com.arexe.bgames.repository.PasswordTokenRepository;
 import com.arexe.bgames.repository.RoleRepository;
 import com.arexe.bgames.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,24 +21,35 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final BCryptPasswordEncoder passwordEncoder;
+    private final PasswordTokenRepository passwordTokenRepository;
 
     @Autowired
-    UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, BCryptPasswordEncoder passwordEncoder) {
+    UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, BCryptPasswordEncoder passwordEncoder, PasswordTokenRepository passwordTokenRepository) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
+        this.passwordTokenRepository = passwordTokenRepository;
     }
 
     @Override
     public void saveUser(User user) {
-        user.setActive(1);
+        user.setActive(0); //0 = disabled, new account registered
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         Role role = roleRepository.findByRole("ROLE_USER");
         user.setRoles(new HashSet<>(Collections.singletonList(role)));
 
         userRepository.save(user);
+    }
 
+    @Override
+    public void savePasswordToken(PasswordToken passwordToken) {
+        passwordTokenRepository.save(passwordToken);
+    }
+
+    @Override
+    public User findUserById(int id) {
+        return userRepository.findUserById(id);
     }
 
     @Override
@@ -50,6 +63,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public PasswordToken findPasswordToken(String passwordToken) {
+        return passwordTokenRepository.findPasswordTokenByPasswordToken(passwordToken);
+    }
+
+    @Override
     public void updateUserPassword(String newPassword, String email) {
         userRepository.updateUserPassword(passwordEncoder.encode(newPassword), email);
     }
@@ -57,5 +75,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public void updateUserProfile(String login, String firstName, String lastName, String email) {
         userRepository.updateUserProfile(login, firstName, lastName, email);
+    }
+
+    @Override
+    public void updateUserImage(String imagePath, String email) {
+        userRepository.updateUserImage(imagePath, email);
+    }
+
+    @Override
+    public void updateActiveStatus(int id, int active, String activationToken) {
+        userRepository.updateActiveStatus(id, active, activationToken);
     }
 }

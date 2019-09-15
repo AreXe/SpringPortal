@@ -22,6 +22,7 @@
             <h3 class="card-header">Error</h3>
             <div class="card-body">
                 <h5 class="card-title">Page not found!</h5>
+                <i class="fas fa-radiation fa-5x"></i>
             </div>
         </div>
     </div>

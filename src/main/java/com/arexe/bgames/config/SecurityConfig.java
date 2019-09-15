@@ -53,6 +53,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/login").permitAll()
                 .antMatchers("/register").permitAll()
                 .antMatchers("/adduser").permitAll()
+                .antMatchers("/activate/**").permitAll()
+                .antMatchers("/password-reset/**", "/password-reset-proceed").permitAll()
                 .antMatchers("/boardgame/**").permitAll()
                 .antMatchers("/boardgame/search/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/boardgames").permitAll()
@@ -76,7 +78,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity webSec) throws Exception {
         webSec.ignoring()
-                .antMatchers("/resources/**", "/statics/**", "/css/**", "/js/**", "/images/**", "/incl/**");
+                .antMatchers("/resources/**", "/statics/**", "/css/**", "/js/**", "/images/**", "/incl/**")
+                .antMatchers("/v2/api-docs", "/configuration/ui", "/swagger-resources/**", "/configuration/**", "/api/swagger-ui.html", "/webjars/**");
     }
 
 }

@@ -77,6 +77,26 @@
                 </c:forEach>
                 </tbody>
             </table>
+            <nav aria-label="Pages">
+                <ul class="pagination justify-content-center">
+                    <c:if test="${currentPage > 1}">
+                        <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/${path}/${currentPage - 1}"><s:message code="button.previous"/></a></li>
+                    </c:if>
+                    <c:forEach begin="1" end="${totalPages}" var="i">
+                        <c:choose>
+                            <c:when test="${currentPage eq i}">
+                                <li class="page-item active"><a class="page-link">${i} <span class="sr-only">(current)</span></a></li>
+                            </c:when>
+                            <c:otherwise>
+                                <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/${path}/${i}">${i}</a></li>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:forEach>
+                    <c:if test="${currentPage < totalPages}">
+                        <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/${path}/${currentPage + 1}"><s:message code="button.next"/></a></li>
+                    </c:if>
+                </ul>
+            </nav>
         </div>
     </div>
 

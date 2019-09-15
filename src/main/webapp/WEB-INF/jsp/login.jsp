@@ -11,7 +11,7 @@
 <title><s:message code="title.login"/></title>
 </head>
 <body>
-<wrapper class="d-flex flex-column">
+<wrapper class="d-flex flex-column bg-anim">
 <!-- Navigation -->
     <%@include file="/WEB-INF/incl/nav.app" %>
 <!-- Page Content -->
@@ -50,6 +50,9 @@
 
                 <div class="alert alert-info text-center" role="alert">
                     Don't have an account? Create it <a href="/register" class="alert-link">here</a>
+                </div>
+                <div class="alert alert-info text-center" role="alert">
+                    <a href="/password-reset" class="alert-link">Forgot password?</a>
                 </div>
 
             </div>

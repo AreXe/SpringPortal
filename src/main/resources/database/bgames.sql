@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: asgard-mysql
--- Generation Time: Jul 21, 2019 at 04:44 PM
+-- Generation Time: Sep 15, 2019 at 11:56 AM
 -- Server version: 8.0.16
 -- PHP Version: 7.2.19
 
@@ -83,6 +83,42 @@ CREATE TABLE `category` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `favourite`
+--
+
+CREATE TABLE `favourite` (
+  `favourite_id` bigint(20) NOT NULL,
+  `creation_date` datetime(6) DEFAULT NULL,
+  `board_game_id` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `favourite`
+--
+
+INSERT INTO `favourite` (`favourite_id`, `creation_date`, `board_game_id`, `user_id`) VALUES
+(1, '2019-09-14 21:09:54.002025', 1, 1),
+(2, '2019-09-15 10:13:58.658964', 5, 1),
+(3, '2019-09-15 11:36:26.028256', 8, 1),
+(4, '2019-09-15 12:02:54.952435', 10, 1);
+
+-- -------------------------------------------------------
+
+--
+-- Table structure for table `password_token`
+--
+
+CREATE TABLE `password_token` (
+  `password_token_id` int(11) NOT NULL,
+  `email` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `expiration_date` datetime(6) DEFAULT NULL,
+  `password_token` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `role`
 --
 
@@ -112,7 +148,9 @@ CREATE TABLE `user` (
   `first_name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `last_name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `login` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
-  `password` varchar(100) COLLATE utf8_unicode_ci NOT NULL
+  `password` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `activation_token` varchar(40) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `image_path` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -176,6 +214,20 @@ ALTER TABLE `category`
   ADD PRIMARY KEY (`category_id`);
 
 --
+-- Indexes for table `favourite`
+--
+ALTER TABLE `favourite`
+  ADD PRIMARY KEY (`favourite_id`),
+  ADD KEY `FKds9jephh0iyrk3vpnjiqm2rhj` (`board_game_id`),
+  ADD KEY `FK83lccer6s8bgj5jgjwan5eipk` (`user_id`);
+
+--
+-- Indexes for table `password_token`
+--
+ALTER TABLE `password_token`
+  ADD PRIMARY KEY (`password_token_id`);
+
+--
 -- Indexes for table `role`
 --
 ALTER TABLE `role`
@@ -211,6 +263,18 @@ ALTER TABLE `category`
   MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `favourite`
+--
+ALTER TABLE `favourite`
+  MODIFY `favourite_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `password_token`
+--
+ALTER TABLE `password_token`
+  MODIFY `password_token_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `role`
 --
 ALTER TABLE `role`
@@ -232,6 +296,13 @@ ALTER TABLE `user`
 ALTER TABLE `board_game_category`
   ADD CONSTRAINT `FKkrnqpjg7uys41j5rpuj50aynd` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`),
   ADD CONSTRAINT `FKset0ikuyeupb30084xlx3cf7n` FOREIGN KEY (`board_game_id`) REFERENCES `board_game` (`board_game_id`);
+
+--
+-- Constraints for table `favourite`
+--
+ALTER TABLE `favourite`
+  ADD CONSTRAINT `FK83lccer6s8bgj5jgjwan5eipk` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`),
+  ADD CONSTRAINT `FKds9jephh0iyrk3vpnjiqm2rhj` FOREIGN KEY (`board_game_id`) REFERENCES `board_game` (`board_game_id`);
 
 --
 -- Constraints for table `user_role`
