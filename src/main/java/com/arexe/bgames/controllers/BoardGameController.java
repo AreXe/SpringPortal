@@ -3,10 +3,13 @@ package com.arexe.bgames.controllers;
 import com.arexe.bgames.entity.BoardGame;
 import com.arexe.bgames.service.BoardGameService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -22,9 +25,18 @@ public class BoardGameController {
 
     @GetMapping(value = "/admin/boardgames")
     @Secured(value = {"ROLE_ADMIN"})
-    public String showAllBoardGames(Model model) {
-        List<BoardGame> boardGamesList = boardGameService.findAllBoardGames();
+    public ModelAndView boardGamesPanelRedirect() {
+        return new ModelAndView("redirect:/admin/boardgames/1");
+    }
+
+    @GetMapping(value = "/admin/boardgames/{page}")
+    @Secured(value = {"ROLE_ADMIN"})
+    public String showAllBoardGames(@PathVariable("page") int page, Model model) {
+        Page<BoardGame> boardGamesListPageable = getBoardGamesListPageable(page - 1);
+        List<BoardGame> boardGamesList = boardGamesListPageable.getContent();
+        setBoardGamesPages(model, boardGamesListPageable);
         model.addAttribute("bgList", boardGamesList);
+        model.addAttribute("path", "admin/boardgames");
         return "admin/boardgames";
     }
 
@@ -66,8 +78,21 @@ public class BoardGameController {
 
     @DeleteMapping(value = "/admin/deleteboardgame/{id}")
     @Secured(value = {"ROLE_ADMIN"})
-    public String deleteBoardGame(@PathVariable("id") int id){
+    public String deleteBoardGame(@PathVariable("id") int id) {
         boardGameService.deleteBoardGameById(id);
         return "redirect:/admin/boardgames";
+    }
+
+    private Page<BoardGame> getBoardGamesListPageable(int page) {
+        int elements = 5;
+        Page<BoardGame> boardGameList = boardGameService.findAllBoardGamesPageable(PageRequest.of(page, elements));
+        return boardGameList;
+    }
+
+    private void setBoardGamesPages(Model model, Page<BoardGame> boardGamesListPageable) {
+        int totalPages = boardGamesListPageable.getTotalPages();
+        int currentPage = boardGamesListPageable.getNumber();
+        model.addAttribute("totalPages", totalPages);
+        model.addAttribute("currentPage", currentPage + 1);
     }
 }

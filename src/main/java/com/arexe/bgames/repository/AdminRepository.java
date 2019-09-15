@@ -1,6 +1,8 @@
 package com.arexe.bgames.repository;
 
 import com.arexe.bgames.entity.User;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -16,6 +18,10 @@ public interface AdminRepository extends JpaRepository<User, Integer> {
 
     @Query(value = "SELECT * FROM user u WHERE u.email LIKE %:name% OR u.login LIKE %:name%", nativeQuery = true)
     List<User> findUsersByName(@Param("name") String name);
+
+    @Query(value = "SELECT * FROM user u WHERE u.email LIKE %:name% OR u.login LIKE %:name%",
+            countQuery = "SELECT count(*) FROM user u WHERE u.email LIKE %:name% OR u.login LIKE %:name%", nativeQuery = true)
+    Page<User> findUsersByNamePageable(String name, Pageable pageable);
 
     @Modifying
     @Query("UPDATE User u SET u.active=:active WHERE u.id=:id")

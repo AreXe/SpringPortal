@@ -3,6 +3,8 @@ package com.arexe.bgames.service;
 import com.arexe.bgames.entity.User;
 import com.arexe.bgames.repository.AdminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -26,8 +28,20 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
+    public Page<User> getUserListPageable(Pageable pageable) {
+        Page<User> userList = adminRepository.findAll(pageable);
+        return userList;
+    }
+
+    @Override
     public List<User> findUsersByName(String name) {
         List<User> userList = adminRepository.findUsersByName(name);
+        return userList;
+    }
+
+    @Override
+    public Page<User> findUsersByNamePageable(String name, Pageable pageable) {
+        Page<User> userList = adminRepository.findUsersByNamePageable(name, pageable);
         return userList;
     }
 

@@ -10,7 +10,7 @@
 <title>${boardGame.title}  @ <s:message code="title.mainPage"/></title>
 </head>
 <body>
-<wrapper class="d-flex flex-column">
+<wrapper class="d-flex flex-column bg-anim">
 <!-- Navigation -->
     <%@include file="/WEB-INF/incl/nav.app" %>
 <!-- Page Content -->
@@ -30,10 +30,24 @@
 <main class="container-fluid py-3 flex-fill">
 <div class="container">
 
-    <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+    <div class="card row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
         <div class="col p-4 d-flex flex-column position-static">
             <span class="d-inline-block mb-2 text-primary">
-                <a href="#" class="card-link text-danger"><i class="fas fa-heart"></i></a>
+                <sec:authorize access="hasRole('ANONYMOUS')">
+                    <form action="${pageContext.request.contextPath}/addfav/${boardGame.id}" method="POST" style="display: inline-block;">
+                        <button type="submit" class="btn btn-sm p-0 text-danger" data-toggle="tooltip" title="Add ${boardGame.title} to favourites"><i class="far fa-heart"></i></button>
+                    </form>
+                </sec:authorize>
+                <sec:authorize access="isAuthenticated()">
+                <c:choose>
+                    <c:when test="${inFavouriteList eq true}">
+                        <button class="btn btn-sm p-0 text-danger" onclick="$.post('${pageContext.request.contextPath}/addfav/${boardGame.id}').done(function() {location.reload()})" data-toggle="tooltip" title="Delete ${boardGame.title} from favourites"><i class="fas fa-heart"></i></button>
+                    </c:when>
+                    <c:otherwise>
+                        <button class="btn btn-sm p-0 text-danger" onclick="$.post('${pageContext.request.contextPath}/addfav/${boardGame.id}').done(function() {location.reload()})" data-toggle="tooltip" title="Add ${boardGame.title} to favourites"><i class="far fa-heart"></i></button>
+                    </c:otherwise>
+                </c:choose>
+                </sec:authorize>
                 <button type="button" class="btn btn-sm p-0 text-primary ml-3 js-copy" data-toggle="tooltip" title="Copy the link to ${boardGame.title}" data-copy="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/boardgame/${boardGame.id}"><i class="fas fa-share-alt"></i></button>
             </span>
             <h3 class="mb-0">${boardGame.title} (${boardGame.releaseYear})
@@ -45,7 +59,7 @@
             <p class="card-text mb-auto">${boardGame.description}</p>
         </div>
         <div class="col-auto m-1 d-none d-lg-block">
-            <img class="card-img-top " src="${boardGame.imagePath}" alt="${boardGame.title}">
+            <img class="card-img-top" src="${boardGame.imagePath}" alt="${boardGame.title}">
         </div>
     </div>
 
