@@ -37,6 +37,21 @@ main {
     100%{background-position:0% 50%}
 }
 
+/*Footer*/
+#copyright {
+    font-family: Arial;
+    font-size: 12px;
+}
+
+#copyright a {
+    color: mintcream;
+}
+
+#copyright a:hover, a:focus {
+    color: #b8d6ff;
+    text-decoration: none;
+}
+
 /*Feather icons*/
 .feather {
     width: 20px;
