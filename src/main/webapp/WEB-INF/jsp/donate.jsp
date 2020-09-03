@@ -61,8 +61,8 @@
                                 <span class="input-group-text">zł</span>
                             </div>
                             <select name="amount" id="amount" class="form-control">
-                                <option selected>5</option>
-                                <option>20</option>
+                                <option value="500" selected>5</option>
+                                <option value="2000">20</option>
                             </select>
                         </div>
                     </div>
