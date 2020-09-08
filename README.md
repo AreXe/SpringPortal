@@ -26,6 +26,20 @@ Available methods for board games CRUD service:
 * `PUT` /api/boardgames/{id} - update board game by given ID (for Admin)
 * `DELETE` /api/boardgames/{id} - delete board game by given ID (for Admin)
 
+## WebService
+Example envelope:
+```
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+xmlns:tns="https://senetbg.herokuapp.com/soap/schema">
+<soap:Body>
+<tns:getBoardGameByIdRequest>
+<id>10</id>
+</tns:getBoardGameByIdRequest>
+</soap:Body>
+</soap:Envelope>
+```
+
 ## How to run the application
 The project includes Spring Boot Maven Plugin, so using this command will build and run the application:
 ```
