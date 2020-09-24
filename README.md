@@ -27,6 +27,8 @@ Available methods for board games CRUD service:
 * `DELETE` /api/boardgames/{id} - delete board game by given ID (for Admin)
 
 ## WebService
+WSDL definition schema:
+``http://localhost:8080/ws/boardgame.wsdl``  
 Example envelope:
 ```
 <?xml version="1.0" encoding="utf-8"?>

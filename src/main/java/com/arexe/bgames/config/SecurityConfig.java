@@ -16,8 +16,8 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import javax.sql.DataSource;
 
 @Configuration
-@EnableWebSecurity
-@EnableGlobalMethodSecurity(securedEnabled = true)
+//@EnableWebSecurity
+//@EnableGlobalMethodSecurity(securedEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final BCryptPasswordEncoder passwordEncoder;
@@ -56,7 +56,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/activate/**").permitAll()
                 .antMatchers("/password-reset/**", "/password-reset-proceed").permitAll()
                 .antMatchers("/donate**").permitAll()
-                .antMatchers("/soap/**").permitAll()
+                .antMatchers("/ws/**").permitAll()
                 .antMatchers("/boardgame/**").permitAll()
                 .antMatchers("/boardgame/search/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/boardgames").permitAll()
@@ -76,6 +76,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/")
                 .and().exceptionHandling().accessDeniedPage("/denied");
     }
+
+    /*@Override
+    protected void configure(HttpSecurity httpSec) throws Exception {
+        httpSec
+                .httpBasic()
+                .and().csrf().disable()
+                .formLogin()
+                .loginPage("/login")
+                .failureUrl("/login?error=true")
+                .defaultSuccessUrl("/").usernameParameter("email")
+                .passwordParameter("password")
+                .and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/")
+                .and().exceptionHandling().accessDeniedPage("/denied");
+    }*/
 
     @Override
     public void configure(WebSecurity webSec) {

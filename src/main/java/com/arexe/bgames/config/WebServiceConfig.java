@@ -21,14 +21,14 @@ public class WebServiceConfig extends WsConfigurerAdapter {
         MessageDispatcherServlet servlet = new MessageDispatcherServlet();
         servlet.setApplicationContext(applicationContext);
         servlet.setTransformWsdlLocations(true);
-        return new ServletRegistrationBean(servlet, "/soap/ws/*");
+        return new ServletRegistrationBean(servlet, "/ws/*");
     }
 
-    @Bean(name = "boardGameSoap")
+    @Bean(name = "boardgame")
     public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema boardGameSchema) {
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
         wsdl11Definition.setPortTypeName("BoardGamePort");
-        wsdl11Definition.setLocationUri("/soap");
+        wsdl11Definition.setLocationUri("/ws");
         wsdl11Definition.setTargetNamespace("https://senetbg.herokuapp.com/soap/schema");
         wsdl11Definition.setSchema(boardGameSchema);
         return wsdl11Definition;
@@ -36,9 +36,6 @@ public class WebServiceConfig extends WsConfigurerAdapter {
 
     @Bean
     public XsdSchema boardGameSchema() {
-        System.out.println("****************");
-        final ClassPathResource classPathResource = new ClassPathResource("boardgame.xsd");
-        System.out.println(classPathResource.getPath());
         return new SimpleXsdSchema(new ClassPathResource("boardgame.xsd"));
     }
 }
