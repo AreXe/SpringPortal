@@ -26,6 +26,13 @@ Available methods for board games CRUD service:
 * `PUT` /api/boardgames/{id} - update board game by given ID (for Admin)
 * `DELETE` /api/boardgames/{id} - delete board game by given ID (for Admin)
 
+## SOAP Web Service
+The application includes simple web service for Board Games repository.
+You can check service functionality and specification in WSDL file at:
+```
+https://senetbg.herokuapp.com/ws/boardgame.wsdl
+```
+
 ## How to run the application
 The project includes Spring Boot Maven Plugin, so using this command will build and run the application:
 ```
