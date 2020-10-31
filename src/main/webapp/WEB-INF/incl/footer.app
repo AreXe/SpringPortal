@@ -1,8 +1,9 @@
 <footer class="container-fluid w-100 py-2 bg-dark">
 <div id="copyright" class="container">
     <p class="m-0 text-center text-white">
-        Copyright &copy; 2019 <a href="/index" class="alert-link">Senet</a> &middot;
+        Copyright &copy; 2020 <a href="/index" class="alert-link">Senet</a> &middot;
         <a href="${pageContext.request.contextPath}/api/swagger-ui.html" target="_blank">API docs</a> &middot;
+        <a href="${pageContext.request.contextPath}/ws-info" >Web Services</a> &middot;
         <a href="${pageContext.request.contextPath}/donate" >Donate</a> &middot;
         <a href="https://github.com/arexe/BoardGames_Spring" target="_blank">Contact</a>
     </p>
