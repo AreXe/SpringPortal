@@ -35,8 +35,6 @@
 
     <root level="INFO">
         <appender-ref ref="STDOUT"/>
-        <appender-ref ref="LOG_ERROR"/>
-        <appender-ref ref="LOG_APP"/>
     </root>
 
     <logger name="bgames.logger" level="ERROR" additivity="false">
