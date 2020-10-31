@@ -26,6 +26,25 @@ Available methods for board games CRUD service:
 * `PUT` /api/boardgames/{id} - update board game by given ID (for Admin)
 * `DELETE` /api/boardgames/{id} - delete board game by given ID (for Admin)
 
+## SOAP Web Service
+The application includes simple web service for Board Games repository.
+Service specification is defined in WSDL file at:
+```
+https://senetbg.herokuapp.com/ws/boardgame.wsdl
+```
+Web Service is located at ``https://senetbg.herokuapp.com/ws/`` and accepts ``POST`` requests with ``Content-Type: text\xml``  
+Example SOAP message:
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tns="https://senetbg.herokuapp.com/soap/schema">
+   <soap:Body>
+      <tns:getBoardGameByIdRequest>
+         <id>{id}</id>
+      </tns:getBoardGameByIdRequest>
+   </soap:Body>
+</soap:Envelope>
+```
+
 ## How to run the application
 The project includes Spring Boot Maven Plugin, so using this command will build and run the application:
 ```

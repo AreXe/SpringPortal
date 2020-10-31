@@ -14,14 +14,14 @@
         </filter>
         <file>.logs/error.log</file>
         <encoder>
-            <pattern>[LOG_ERROR] %d %-4relative %-5level %caller{1}: %msg%n</pattern>
+            <pattern>%d %-4relative %-5level %caller{1} {%X}: %msg%n</pattern>
         </encoder>
     </appender>
 
     <appender name="LOG_APP" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <encoder>
             <pattern>
-                %d [%t] %-3L %-5p %C: %m%n
+                %d [%t] %-3L %-5p %C {%X}: %m%n
             </pattern>
         </encoder>
         <file>.logs/bgames.log</file>
@@ -35,8 +35,6 @@
 
     <root level="INFO">
         <appender-ref ref="STDOUT"/>
-        <appender-ref ref="LOG_ERROR"/>
-        <appender-ref ref="LOG_APP"/>
     </root>
 
     <logger name="bgames.logger" level="ERROR" additivity="false">
